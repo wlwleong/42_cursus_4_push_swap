@@ -6,15 +6,15 @@
 /*   By: wlow <wlow@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 21:28:00 by wlow              #+#    #+#             */
-/*   Updated: 2021/07/26 22:00:02 by wlow             ###   ########.fr       */
+/*   Updated: 2022/04/19 03:05:12 by wlwleong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
-	int	i;
-	int	sign;
-	int	num;
+	long int	num;
+	int			sign;
+	int			i;
 
 	i = 0;
 	while (str[i] != '\0' && (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'

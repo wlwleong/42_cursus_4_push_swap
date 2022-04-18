@@ -6,7 +6,7 @@
 /*   By: wlow <wlow@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 21:10:30 by wlow              #+#    #+#             */
-/*   Updated: 2021/08/05 09:24:23 by wlow             ###   ########.fr       */
+/*   Updated: 2022/04/19 03:09:27 by wlwleong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		ft_strncmp(const char *str1, const char *str2, size_t count);
 void	*ft_memchr(const void *buf, int c, size_t count);
 int		ft_memcmp(const void *buf1, const void *buf2, size_t count);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
-int		ft_atoi(const char *str);
+long	ft_atoi(const char *str);
 void	*ft_calloc(size_t num, size_t size);
 char	*ft_strdup(const char *string);
 char	*ft_substr(char const *s, unsigned int start, size_t len);

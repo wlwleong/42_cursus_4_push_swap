@@ -13,8 +13,41 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-int	main(void)
+static int	check_numeric_param(char *str);
+
+int	main(int argc, char *argv[])
 {
-	printf("HELLO WORLD!\n");
+	int	i;
+
+	if (argc < 2)
+		exit(EXIT_FAILURE);
+	i = 1;
+	while (argc - i > 0)
+	{
+		printf("argv[%d] = ", i);
+		if (!check_numeric_param(argv[i]))
+			printf("Error\n");
+		else if (ft_atoi(argv[i]) < INT_MIN || ft_atoi(argv[i]) > INT_MAX)
+			printf("Error - argv[%d] = %ld\n", i, ft_atoi(argv[i]));
+		else
+			printf("%ld\n", ft_atoi(argv[i]));
+		i++;
+	}
 	return (0);
+}
+
+static int	check_numeric_param(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '+' || str[i] == '-')
+			i++;
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }
