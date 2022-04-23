@@ -18,4 +18,10 @@
 # include <stdlib.h>
 # include <limits.h>
 
+typedef struct  s_stack_info
+{
+    int largest_int;
+    int smallest_int;
+}               t_stack_info;
+
 #endif
