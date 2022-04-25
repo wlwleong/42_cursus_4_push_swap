@@ -15,7 +15,7 @@
 
 static int	check_numeric_param(char *str);
 static int	check_duplicate(int *arr, int size);
-static void	ft_error(void);
+static void	ft_error(int type, void *ptr);
 
 int	main(int argc, char *argv[])
 {
@@ -23,35 +23,38 @@ int	main(int argc, char *argv[])
 	int		i;
 
 	if (argc < 2)
-		exit(EXIT_FAILURE);
+		ft_error(0, NULL);
 	stack_a_array = malloc (sizeof(int) * (argc - 1));
 	if (!stack_a_array)
-	{
-		perror("stack_a_array");
-		exit(EXIT_FAILURE);
-	}
+		ft_error(-2, NULL);
 	i = 1;
 	while (argc - i > 0)
 	{
 		if (!check_numeric_param(argv[i]))
-			ft_error();
+			ft_error(-1, NULL);
 		else if (ft_atoi(argv[i]) < INT_MIN || ft_atoi(argv[i]) > INT_MAX)
-			ft_error();
+			ft_error(-1, NULL);
 		else
 			stack_a_array[i - 1] = ft_atoi(argv[i]);
 		i++;
 	}
-	if (check_duplicate(stack_a_array, argc - 1))
-		printf("All checks OK!\n");
-	else
-		ft_error();
-	free(stack_a_array);
+	if (!check_duplicate(stack_a_array, argc - 1))
+		ft_error(-3, stack_a_array);
+	printf("All checks OK!\n");
 	return (0);
 }
 
-static void	ft_error(void)
+static void	ft_error(int type, void *ptr)
 {
-	write(1, "Error\n", 6);
+	if (type == -1)
+		write(1, "Error\n", 6);
+	else if (type == -2)
+		write(1, "malloc Error\n", 13);
+	else if (type == -3)
+	{
+		free(ptr);
+		ft_error(-1, NULL);
+	}
 	exit(EXIT_FAILURE);
 }
 
