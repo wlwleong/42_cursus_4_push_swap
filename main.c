@@ -31,30 +31,29 @@ int	main(int argc, char *argv[])
 	while (argc - i > 0)
 	{
 		if (!check_numeric_param(argv[i]))
-			ft_error(-1, NULL);
+			ft_error(-1, stack_a_array);
 		else if (ft_atoi(argv[i]) < INT_MIN || ft_atoi(argv[i]) > INT_MAX)
-			ft_error(-1, NULL);
+			ft_error(-1, stack_a_array);
 		else
 			stack_a_array[i - 1] = ft_atoi(argv[i]);
 		i++;
 	}
 	if (!check_duplicate(stack_a_array, argc - 1))
-		ft_error(-3, stack_a_array);
+		ft_error(-1, stack_a_array);
 	printf("All checks OK!\n");
+	free(stack_a_array);
 	return (0);
 }
 
 static void	ft_error(int type, void *ptr)
 {
 	if (type == -1)
+	{
 		write(1, "Error\n", 6);
+		free(ptr);
+	}
 	else if (type == -2)
 		write(1, "malloc Error\n", 13);
-	else if (type == -3)
-	{
-		free(ptr);
-		ft_error(-1, NULL);
-	}
 	exit(EXIT_FAILURE);
 }
 
