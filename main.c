@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 static int	check_numeric_param(char *str);
 static int	check_duplicate(int *arr, int size);
@@ -19,29 +18,30 @@ static void	ft_error(int type, void *ptr);
 
 int	main(int argc, char *argv[])
 {
-	int		*stack_a_array;
-	int		i;
+	t_stack_info	stack_a_info;
+	int				i;
 
 	if (argc < 2)
 		ft_error(0, NULL);
-	stack_a_array = malloc (sizeof(int) * (argc - 1));
-	if (!stack_a_array)
+	stack_a_info.sa_size = argc - 1;
+	stack_a_info.array = malloc (sizeof(int) * (stack_a_info.sa_size));
+	if (!stack_a_info.array)
 		ft_error(-2, NULL);
 	i = 1;
 	while (argc - i > 0)
 	{
 		if (!check_numeric_param(argv[i]))
-			ft_error(-1, stack_a_array);
+			ft_error(-1, stack_a_info.array);
 		else if (ft_atoi(argv[i]) < INT_MIN || ft_atoi(argv[i]) > INT_MAX)
-			ft_error(-1, stack_a_array);
+			ft_error(-1, stack_a_info.array);
 		else
-			stack_a_array[i - 1] = ft_atoi(argv[i]);
+			stack_a_info.array[i - 1] = ft_atoi(argv[i]);
 		i++;
 	}
-	if (!check_duplicate(stack_a_array, argc - 1))
-		ft_error(-1, stack_a_array);
-	printf("All checks OK!\n");
-	free(stack_a_array);
+	if (!check_duplicate(stack_a_info.array, stack_a_info.sa_size))
+		ft_error(-1, stack_a_info.array);
+	push_swap(stack_a_info);
+	free(stack_a_info.array);
 	return (0);
 }
 
