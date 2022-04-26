@@ -20,10 +20,13 @@
 
 typedef struct  s_stack_info
 {
-    int *array;
-    int sa_size;
-    int largest_int;
-    int smallest_int;
+    int     *array;
+    int     sa_size;
+    int     largest_int;
+    int     largest_int_index;
+    int     smallest_int;
+    int     smallest_int_index;
+    t_list  *sa_top;
 }               t_stack_info;
 
 void	push_swap(t_stack_info sa_info);

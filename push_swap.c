@@ -13,28 +13,22 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-void	ft_get_limits(int *arr, int size, t_stack_info *stack_a);
+int		ft_get_limits(t_stack_info *sa);
+int		ft_check_sorted(t_stack_info *sa);
+void	init_stack(t_stack_info *sa_info, t_list **sa);
 void	ft_lstclear_new(t_list **lst);
 
 void	push_swap(t_stack_info sa_info)
 {
 	t_list	*stack_a;
-	t_list	*stack_a_head;
 	int		i;
 
-	i = 0;
-	while (i < sa_info.sa_size)
+	if (ft_get_limits(&sa_info))
 	{
-		if (i == 0)
-		{
-			stack_a = ft_lstnew(&sa_info.array[i]);
-			stack_a_head = stack_a;
-		}
-		else
-			ft_lstadd_back(&stack_a, ft_lstnew(&sa_info.array[i]));
-		i++;
+		if (ft_check_sorted(&sa_info))
+			return ;
 	}
-	ft_get_limits(sa_info.array, sa_info.sa_size, &sa_info);
+	init_stack(&sa_info, &stack_a);
 	i = 1;
 	while (stack_a)
 	{
@@ -42,24 +36,63 @@ void	push_swap(t_stack_info sa_info)
 		stack_a = stack_a->next;
 		i++;
 	}
-	printf("Smallest num = %d   ;   Largest num = %d\n", sa_info.smallest_int, sa_info.largest_int);
-	stack_a = stack_a_head;
+	stack_a = sa_info.sa_top;
 	ft_lstclear_new(&stack_a);
 }
 
-void		ft_get_limits(int *arr, int size, t_stack_info *stack_a)
+int	ft_get_limits(t_stack_info *sa)
 {
 	int		i;
 
-	stack_a->largest_int = INT_MIN;
-	stack_a->smallest_int = INT_MAX;
+	sa->largest_int = INT_MIN;
+	sa->smallest_int = INT_MAX;
 	i = 0;
-	while (i < size)
+	while (i < sa->sa_size)
 	{
-		if (arr[i] > stack_a->largest_int)
-			stack_a->largest_int = arr[i];
-		if (arr[i] < stack_a->smallest_int)
-			stack_a->smallest_int = arr[i];
+		if (sa->array[i] > sa->largest_int)
+		{
+			sa->largest_int = sa->array[i];
+			sa->largest_int_index = i;
+		}
+		if (sa->array[i] < sa->smallest_int)
+		{
+			sa->smallest_int = sa->array[i];
+			sa->smallest_int_index = i;
+		}
+		i++;
+	}
+	if (sa->smallest_int_index == 0
+		&& sa->largest_int_index == sa->sa_size - 1)
+		return (1);
+	return (0);
+}
+
+int	ft_check_sorted(t_stack_info *sa)
+{
+	int	i;
+
+	i = 0;
+	while (i < sa->sa_size - 1 && sa->array[i] < sa->array[i + 1])
+		i++;
+	if (i + 1 == sa->sa_size)
+		return (1);
+	return (0);
+}
+
+void	init_stack(t_stack_info *sa_info, t_list **sa)
+{
+	int	i;
+
+	i = 0;
+	while (i < sa_info->sa_size)
+	{
+		if (i == 0)
+		{
+			*sa = ft_lstnew(&sa_info->array[i]);
+			sa_info->sa_top = *sa;
+		}
+		else
+			ft_lstadd_back(sa, ft_lstnew(&sa_info->array[i]));
 		i++;
 	}
 }
