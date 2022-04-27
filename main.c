@@ -18,30 +18,30 @@ static void	ft_error(int type, void *ptr);
 
 int	main(int argc, char *argv[])
 {
-	t_stack_info	stack_a_info;
+	t_stack_info	stack_a;
 	int				i;
 
 	if (argc < 2)
 		ft_error(0, NULL);
-	stack_a_info.sa_size = argc - 1;
-	stack_a_info.array = malloc (sizeof(int) * (stack_a_info.sa_size));
-	if (!stack_a_info.array)
+	stack_a.size = argc - 1;
+	stack_a.array = malloc (sizeof(int) * (stack_a.size));
+	if (!stack_a.array)
 		ft_error(-2, NULL);
 	i = 1;
 	while (argc - i > 0)
 	{
 		if (!check_numeric_param(argv[i]))
-			ft_error(-1, stack_a_info.array);
+			ft_error(-1, stack_a.array);
 		else if (ft_atoi(argv[i]) < INT_MIN || ft_atoi(argv[i]) > INT_MAX)
-			ft_error(-1, stack_a_info.array);
+			ft_error(-1, stack_a.array);
 		else
-			stack_a_info.array[i - 1] = ft_atoi(argv[i]);
+			stack_a.array[i - 1] = ft_atoi(argv[i]);
 		i++;
 	}
-	if (!check_duplicate(stack_a_info.array, stack_a_info.sa_size))
-		ft_error(-1, stack_a_info.array);
-	push_swap(stack_a_info);
-	free(stack_a_info.array);
+	if (!check_duplicate(stack_a.array, stack_a.size))
+		ft_error(-1, stack_a.array);
+	push_swap(stack_a);
+	free(stack_a.array);
 	return (0);
 }
 

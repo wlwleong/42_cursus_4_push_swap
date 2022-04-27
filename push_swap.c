@@ -42,27 +42,29 @@ void	push_swap(t_stack_info sa_info)
 
 int	ft_get_limits(t_stack_info *sa)
 {
-	int		i;
+	int	largest_index;
+	int	smallest_index;
+	int	i;
 
 	sa->largest_int = INT_MIN;
 	sa->smallest_int = INT_MAX;
 	i = 0;
-	while (i < sa->sa_size)
+	while (i < sa->size)
 	{
 		if (sa->array[i] > sa->largest_int)
 		{
 			sa->largest_int = sa->array[i];
-			sa->largest_int_index = i;
+			largest_index = i;
 		}
 		if (sa->array[i] < sa->smallest_int)
 		{
 			sa->smallest_int = sa->array[i];
-			sa->smallest_int_index = i;
+			smallest_index = i;
 		}
 		i++;
 	}
-	if (sa->smallest_int_index == 0
-		&& sa->largest_int_index == sa->sa_size - 1)
+	if (smallest_index == 0
+		&& largest_index == sa->size - 1)
 		return (1);
 	return (0);
 }
@@ -72,9 +74,9 @@ int	ft_check_sorted(t_stack_info *sa)
 	int	i;
 
 	i = 0;
-	while (i < sa->sa_size - 1 && sa->array[i] < sa->array[i + 1])
+	while (i < sa->size - 1 && sa->array[i] < sa->array[i + 1])
 		i++;
-	if (i + 1 == sa->sa_size)
+	if (i + 1 == sa->size)
 		return (1);
 	return (0);
 }
@@ -84,7 +86,7 @@ void	init_stack(t_stack_info *sa_info, t_list **sa)
 	int	i;
 
 	i = 0;
-	while (i < sa_info->sa_size)
+	while (i < sa_info->size)
 	{
 		if (i == 0)
 		{

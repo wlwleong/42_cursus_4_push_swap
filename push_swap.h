@@ -6,7 +6,7 @@
 /*   By: wlwleong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 16:31:59 by wlwleong          #+#    #+#             */
-/*   Updated: 2022/04/16 16:33:04 by wlwleong         ###   ########.fr       */
+/*   Updated: 2022/04/27 07:32:55 by wlwleong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,14 @@
 # include <stdlib.h>
 # include <limits.h>
 
-typedef struct  s_stack_info
+typedef struct s_stack_info
 {
-    int     *array;
-    int     sa_size;
-    int     largest_int;
-    int     largest_int_index;
-    int     smallest_int;
-    int     smallest_int_index;
-    t_list  *sa_top;
-}               t_stack_info;
+	int		*array;
+	int		size;
+	int		largest_int;
+	int		smallest_int;
+	t_list	*sa_top;
+}		t_stack_info;
 
 void	push_swap(t_stack_info sa_info);
 
