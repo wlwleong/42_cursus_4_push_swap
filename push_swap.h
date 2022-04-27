@@ -25,8 +25,22 @@ typedef struct s_stack_info
 	int		largest_int;
 	int		smallest_int;
 	t_list	*sa_top;
+	t_list	*sa;
+	t_list	*sb_top;
+	t_list	*sb;
 }		t_stack_info;
 
+/*
+push_swap.c
+*/
 void	push_swap(t_stack_info sa_info);
+
+/*
+push_swap_utils.c
+*/
+int		ft_get_limits(t_stack_info *sa);
+int		ft_check_sorted(t_stack_info *sa);
+void	init_stack(t_stack_info *sa);
+void	ft_print_lst(t_list *lst);
 
 #endif

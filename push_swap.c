@@ -11,92 +11,26 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-int		ft_get_limits(t_stack_info *sa);
-int		ft_check_sorted(t_stack_info *sa);
-void	init_stack(t_stack_info *sa_info, t_list **sa);
 void	ft_lstclear_new(t_list **lst);
 
 void	push_swap(t_stack_info sa_info)
 {
-	t_list	*stack_a;
-	int		i;
+	int	i;
 
 	if (ft_get_limits(&sa_info))
 	{
 		if (ft_check_sorted(&sa_info))
 			return ;
 	}
-	init_stack(&sa_info, &stack_a);
-	i = 1;
-	while (stack_a)
-	{
-		printf("Node %d = %d\n", i, *(int *)stack_a->content);
-		stack_a = stack_a->next;
-		i++;
-	}
-	stack_a = sa_info.sa_top;
-	ft_lstclear_new(&stack_a);
-}
-
-int	ft_get_limits(t_stack_info *sa)
-{
-	int	largest_index;
-	int	smallest_index;
-	int	i;
-
-	sa->largest_int = INT_MIN;
-	sa->smallest_int = INT_MAX;
+	init_stack(&sa_info);
 	i = 0;
-	while (i < sa->size)
-	{
-		if (sa->array[i] > sa->largest_int)
-		{
-			sa->largest_int = sa->array[i];
-			largest_index = i;
-		}
-		if (sa->array[i] < sa->smallest_int)
-		{
-			sa->smallest_int = sa->array[i];
-			smallest_index = i;
-		}
-		i++;
-	}
-	if (smallest_index == 0
-		&& largest_index == sa->size - 1)
-		return (1);
-	return (0);
-}
-
-int	ft_check_sorted(t_stack_info *sa)
-{
-	int	i;
-
-	i = 0;
-	while (i < sa->size - 1 && sa->array[i] < sa->array[i + 1])
-		i++;
-	if (i + 1 == sa->size)
-		return (1);
-	return (0);
-}
-
-void	init_stack(t_stack_info *sa_info, t_list **sa)
-{
-	int	i;
-
-	i = 0;
-	while (i < sa_info->size)
-	{
-		if (i == 0)
-		{
-			*sa = ft_lstnew(&sa_info->array[i]);
-			sa_info->sa_top = *sa;
-		}
-		else
-			ft_lstadd_back(sa, ft_lstnew(&sa_info->array[i]));
-		i++;
-	}
+	while (i < sa_info.size)
+		ft_lstadd_back(&sa_info.sa, ft_lstnew(&sa_info.array[i++]));
+	sa_info.sa_top = sa_info.sa;
+	ft_print_lst(sa_info.sa);
+	sa_info.sa = sa_info.sa_top;
+	ft_lstclear_new(&sa_info.sa);
 }
 
 void	ft_lstclear_new(t_list **lst)
