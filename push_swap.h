@@ -43,4 +43,11 @@ int		ft_check_sorted(t_stack_info *sa);
 void	init_stack(t_stack_info *sa);
 void	ft_print_lst(t_list *lst);
 
+/*
+operation_s_p.c
+*/
+void	sa(t_stack_info *stack, int display);
+void	sb(t_stack_info *stack, int display);
+void	ss(t_stack_info *stack);
+
 #endif

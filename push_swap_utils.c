@@ -65,6 +65,8 @@ void	ft_print_lst(t_list *lst)
 {
 	int	i;
 
+	if (!lst)
+		return ;
 	i = 1;
 	while (lst)
 	{

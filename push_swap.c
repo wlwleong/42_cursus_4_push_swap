@@ -29,6 +29,10 @@ void	push_swap(t_stack_info sa_info)
 		ft_lstadd_back(&sa_info.sa, ft_lstnew(&sa_info.array[i++]));
 	sa_info.sa_top = sa_info.sa;
 	ft_print_lst(sa_info.sa);
+	sa(&sa_info, 1);
+	ft_print_lst(sa_info.sa);
+	ss(&sa_info);
+	ft_print_lst(sa_info.sa);
 	sa_info.sa = sa_info.sa_top;
 	ft_lstclear_new(&sa_info.sa);
 }
