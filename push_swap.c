@@ -12,8 +12,6 @@
 
 #include "push_swap.h"
 
-void	ft_lstclear_new(t_list **lst);
-
 void	push_swap(t_stack_info sa_info)
 {
 	int	i;
@@ -34,17 +32,31 @@ void	push_swap(t_stack_info sa_info)
 	ss(&sa_info);
 	ft_print_lst(sa_info.sa);
 	pb(&sa_info);
-	pb(&sa_info);
-	pb(&sa_info);
+	ft_putstr_fd("stack a\n", 1);
+	ft_print_lst(sa_info.sa);
+	ft_putstr_fd("stack b\n", 1);
+	ft_print_lst(sa_info.sb);
+	pa(&sa_info);
+	ft_putstr_fd("stack a\n", 1);
+	ft_print_lst(sa_info.sa);
+	ft_putstr_fd("stack b\n", 1);
+	ft_print_lst(sa_info.sb);
 	pb(&sa_info);
 	ft_putstr_fd("stack a\n", 1);
 	ft_print_lst(sa_info.sa);
 	ft_putstr_fd("stack b\n", 1);
 	ft_print_lst(sa_info.sb);
-	sa_info.sa = sa_info.sa_top;
-	ft_lstclear_new(&sa_info.sa);
-	sa_info.sb = sa_info.sb_top;
-	ft_lstclear_new(&sa_info.sb);
+	pb(&sa_info);
+	ft_putstr_fd("stack a\n", 1);
+	ft_print_lst(sa_info.sa);
+	ft_putstr_fd("stack b\n", 1);
+	ft_print_lst(sa_info.sb);
+	ss(&sa_info);
+	ft_putstr_fd("stack a\n", 1);
+	ft_print_lst(sa_info.sa);
+	ft_putstr_fd("stack b\n", 1);
+	ft_print_lst(sa_info.sb);
+	free_stack(&sa_info);
 }
 
 void	ft_lstclear_new(t_list **lst)

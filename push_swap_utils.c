@@ -53,12 +53,20 @@ int	ft_check_sorted(t_stack_info *sa)
 	return (0);
 }
 
-void	init_stack(t_stack_info *sa_info)
+void	init_stack(t_stack_info *stack)
 {
-	sa_info->sa = NULL;
-    sa_info->sa_top = NULL;
-    sa_info->sb = NULL;
-    sa_info->sb_top = NULL;
+	stack->sa = NULL;
+    stack->sa_top = stack->sa;
+    stack->sb = NULL;
+    stack->sb_top = stack->sb;
+}
+
+void	free_stack(t_stack_info *stack)
+{
+	stack->sa = stack->sa_top;
+	ft_lstclear_new(&stack->sa);
+	stack->sb = stack->sb_top;
+	ft_lstclear_new(&stack->sb);
 }
 
 void	ft_print_lst(t_list *lst)

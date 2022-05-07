@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 /*
 Swap the first 2 elements at the top of stack a.
@@ -65,14 +66,15 @@ void	pa(t_stack_info *stack)
 	t_list	*list;
 	t_list	*temp;
 
-	list = stack->sb_top;
-	temp = stack->sb->next;
-	if (!list)
+	if (!stack->sb_top)
 		return ;
+	list = stack->sb_top;
+	temp = stack->sb_top->next;
 	ft_lstadd_front(&stack->sa, list);
 	stack->sa_top = stack->sa;
 	stack->sb = temp;
 	stack->sb_top = stack->sb;
+	ft_putstr_fd("pa\n", 1);
 }
 
 /*
@@ -84,12 +86,13 @@ void	pb(t_stack_info *stack)
 	t_list	*list;
 	t_list	*temp;
 
-	list = stack->sa_top;
-	temp = stack->sa->next;
-	if (!list)
+	if (!stack->sa_top)
 		return ;
+	list = stack->sa_top;
+	temp = stack->sa_top->next;
 	ft_lstadd_front(&stack->sb, list);
 	stack->sb_top = stack->sb;
 	stack->sa = temp;
 	stack->sa_top = stack->sa;
+	ft_putstr_fd("pb\n", 1);
 }

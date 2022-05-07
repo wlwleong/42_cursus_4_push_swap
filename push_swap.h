@@ -34,13 +34,15 @@ typedef struct s_stack_info
 push_swap.c
 */
 void	push_swap(t_stack_info sa_info);
+void	ft_lstclear_new(t_list **lst);
 
 /*
 push_swap_utils.c
 */
 int		ft_get_limits(t_stack_info *sa);
 int		ft_check_sorted(t_stack_info *sa);
-void	init_stack(t_stack_info *sa);
+void	init_stack(t_stack_info *stack);
+void	free_stack(t_stack_info *stack);
 void	ft_print_lst(t_list *lst);
 
 /*
