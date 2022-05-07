@@ -6,7 +6,7 @@
 /*   By: wlwleong <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 14:10:20 by wlwleong          #+#    #+#             */
-/*   Updated: 2022/04/27 14:10:46 by wlwleong         ###   ########.fr       */
+/*   Updated: 2022/05/08 01:30:42 by wlwleong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ int	ft_check_sorted(t_stack_info *sa)
 void	init_stack(t_stack_info *stack)
 {
 	stack->sa = NULL;
-    stack->sa_top = stack->sa;
-    stack->sb = NULL;
-    stack->sb_top = stack->sb;
+	stack->sa_top = stack->sa;
+	stack->sb = NULL;
+	stack->sb_top = stack->sb;
 }
 
 void	free_stack(t_stack_info *stack)
