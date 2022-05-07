@@ -49,5 +49,7 @@ operation_s_p.c
 void	sa(t_stack_info *stack, int display);
 void	sb(t_stack_info *stack, int display);
 void	ss(t_stack_info *stack);
+void	pa(t_stack_info *stack);
+void	pb(t_stack_info *stack);
 
 #endif
