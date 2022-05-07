@@ -54,4 +54,11 @@ void	ss(t_stack_info *stack);
 void	pa(t_stack_info *stack);
 void	pb(t_stack_info *stack);
 
+/*
+operation_r.c
+*/
+void	ra(t_stack_info *stack, int display);
+void	rb(t_stack_info *stack, int display);
+void    rr(t_stack_info *stack);
+
 #endif

@@ -14,6 +14,7 @@ LIBFT_PATH		=	./libft
 LIBFT			=	$(LIBFT_PATH)/libft.a
 
 SOURCES_FILES	=	main.c push_swap.c push_swap_utils.c operation_s_p.c
+SOURCES_FILES	+=	operation_r.c
 
 SOURCES_DIR		=	.
 HEADER_DIR		=	.
