@@ -28,30 +28,31 @@ void	push_swap(t_stack_info sa_info)
 	sa_info.sa_top = sa_info.sa;
 	ft_print_lst(sa_info.sa);
 	pb(&sa_info);
-	ft_putstr_fd("stack a\n", 1);
-	ft_print_lst(sa_info.sa);
-	ft_putstr_fd("stack b\n", 1);
-	ft_print_lst(sa_info.sb);
+	pb(&sa_info);
 	pb(&sa_info);
 	ft_putstr_fd("stack a\n", 1);
 	ft_print_lst(sa_info.sa);
 	ft_putstr_fd("stack b\n", 1);
 	ft_print_lst(sa_info.sb);
-	ra(&sa_info, 1);
+	ft_putstr_fd("\n", 1);
+	rra(&sa_info, 1);
 	ft_putstr_fd("stack a\n", 1);
 	ft_print_lst(sa_info.sa);
 	ft_putstr_fd("stack b\n", 1);
 	ft_print_lst(sa_info.sb);
-	rb(&sa_info, 1);
+	ft_putstr_fd("\n", 1);
+	rrb(&sa_info, 1);
 	ft_putstr_fd("stack a\n", 1);
 	ft_print_lst(sa_info.sa);
 	ft_putstr_fd("stack b\n", 1);
 	ft_print_lst(sa_info.sb);
-	rr(&sa_info);
+	ft_putstr_fd("\n", 1);
+	rrr(&sa_info);
 	ft_putstr_fd("stack a\n", 1);
 	ft_print_lst(sa_info.sa);
 	ft_putstr_fd("stack b\n", 1);
 	ft_print_lst(sa_info.sb);
+	ft_putstr_fd("\n", 1);
 	free_stack(&sa_info);
 }
 

@@ -61,4 +61,11 @@ void	ra(t_stack_info *stack, int display);
 void	rb(t_stack_info *stack, int display);
 void    rr(t_stack_info *stack);
 
+/*
+operation_rr.c
+*/
+void	rra(t_stack_info *stack, int display);
+void	rrb(t_stack_info *stack, int display);
+void    rrr(t_stack_info *stack);
+
 #endif
