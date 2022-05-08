@@ -55,7 +55,12 @@ int	ft_check_sorted(t_stack_info *sa)
 
 void	init_stack(t_stack_info *stack)
 {
+	int	i;
+
 	stack->sa = NULL;
+	i = 0;
+	while (i < stack->size)
+		ft_lstadd_back(&stack->sa, ft_lstnew(&stack->array[i++]));
 	stack->sa_top = stack->sa;
 	stack->sb = NULL;
 	stack->sb_top = stack->sb;
