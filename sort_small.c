@@ -44,7 +44,7 @@ void	sort_three(t_stack_info *stack)
 void	sort_small(t_stack_info *stack)
 {
 	while (stack->sa_size > 3)
-		ft_smart_pb(stack, ft_get_smallest(stack->sa, stack->sa_top));
+		ft_pb_smallest(stack, ft_get_smallest(stack->sa, stack->sa_top));
 	sort_three(stack);
 	while (stack->sb_size > 0)
 		pa(stack);
@@ -79,7 +79,7 @@ int	ft_get_index(t_list *lst, t_list *lst_top, int num)
 	return (index);
 }
 
-void	ft_smart_pb(t_stack_info *stack, int num)
+void	ft_pb_smallest(t_stack_info *stack, int num)
 {
 	int	proximity;
 	int	reverse;
