@@ -21,6 +21,12 @@ void	push_swap(t_stack_info sa_info)
 	}
 	init_stack(&sa_info);
 	ft_print_lst(sa_info.sa);
+	if (sa_info.size == 2)
+		sa(&sa_info, 1);
+	else if (sa_info.size == 3)
+		sort_three(&sa_info);
+	ft_putstr_fd("After sorted:\n", 1);
+	ft_print_lst(sa_info.sa);
 	free_stack(&sa_info);
 }
 

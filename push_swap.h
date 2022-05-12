@@ -59,13 +59,18 @@ operation_r.c
 */
 void	ra(t_stack_info *stack, int display);
 void	rb(t_stack_info *stack, int display);
-void    rr(t_stack_info *stack);
+void	rr(t_stack_info *stack);
 
 /*
 operation_rr.c
 */
 void	rra(t_stack_info *stack, int display);
 void	rrb(t_stack_info *stack, int display);
-void    rrr(t_stack_info *stack);
+void	rrr(t_stack_info *stack);
+
+/*
+sort_small.c
+*/
+void	sort_three(t_stack_info *stack);
 
 #endif
