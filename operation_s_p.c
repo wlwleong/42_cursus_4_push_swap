@@ -73,6 +73,8 @@ void	pa(t_stack_info *stack)
 	stack->sa_top = stack->sa;
 	stack->sb = temp;
 	stack->sb_top = stack->sb;
+	stack->sa_size = ft_lstsize(stack->sa);
+	stack->sb_size = ft_lstsize(stack->sb);
 	ft_putstr_fd("pa\n", 1);
 }
 
@@ -93,5 +95,7 @@ void	pb(t_stack_info *stack)
 	stack->sb_top = stack->sb;
 	stack->sa = temp;
 	stack->sa_top = stack->sa;
+	stack->sa_size = ft_lstsize(stack->sa);
+	stack->sb_size = ft_lstsize(stack->sb);
 	ft_putstr_fd("pb\n", 1);
 }

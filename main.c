@@ -23,8 +23,8 @@ int	main(int argc, char *argv[])
 
 	if (argc < 2)
 		ft_error(0, NULL);
-	stack_a.size = argc - 1;
-	stack_a.array = malloc (sizeof(int) * (stack_a.size));
+	stack_a.sa_size = argc - 1;
+	stack_a.array = malloc (sizeof(int) * (stack_a.sa_size));
 	if (!stack_a.array)
 		ft_error(-2, NULL);
 	i = 1;
@@ -38,7 +38,7 @@ int	main(int argc, char *argv[])
 			stack_a.array[i - 1] = ft_atoi(argv[i]);
 		i++;
 	}
-	if (!check_duplicate(stack_a.array, stack_a.size))
+	if (!check_duplicate(stack_a.array, stack_a.sa_size))
 		ft_error(-1, stack_a.array);
 	push_swap(stack_a);
 	free(stack_a.array);

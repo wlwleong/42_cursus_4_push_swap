@@ -21,7 +21,7 @@ int	ft_get_limits(t_stack_info *sa)
 	sa->largest_int = INT_MIN;
 	sa->smallest_int = INT_MAX;
 	i = 0;
-	while (i < sa->size)
+	while (i < sa->sa_size)
 	{
 		if (sa->array[i] > sa->largest_int)
 		{
@@ -36,7 +36,7 @@ int	ft_get_limits(t_stack_info *sa)
 		i++;
 	}
 	if (smallest_index == 0
-		&& largest_index == sa->size - 1)
+		&& largest_index == sa->sa_size - 1)
 		return (1);
 	return (0);
 }
@@ -46,9 +46,9 @@ int	ft_check_sorted(t_stack_info *sa)
 	int	i;
 
 	i = 0;
-	while (i < sa->size - 1 && sa->array[i] < sa->array[i + 1])
+	while (i < sa->sa_size - 1 && sa->array[i] < sa->array[i + 1])
 		i++;
-	if (i + 1 == sa->size)
+	if (i + 1 == sa->sa_size)
 		return (1);
 	return (0);
 }
@@ -59,7 +59,7 @@ void	init_stack(t_stack_info *stack)
 
 	stack->sa = NULL;
 	i = 0;
-	while (i < stack->size)
+	while (i < stack->sa_size)
 		ft_lstadd_back(&stack->sa, ft_lstnew(&stack->array[i++]));
 	stack->sa_top = stack->sa;
 	stack->sb = NULL;
@@ -74,12 +74,13 @@ void	free_stack(t_stack_info *stack)
 	ft_lstclear_new(&stack->sb);
 }
 
-void	ft_print_lst(t_list *lst)
+void	ft_print_lst(t_list *lst, t_list *lst_top)
 {
 	int	i;
 
 	if (!lst)
 		return ;
+	lst = lst_top;
 	i = 1;
 	while (lst)
 	{
