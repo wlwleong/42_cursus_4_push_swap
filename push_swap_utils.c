@@ -64,6 +64,7 @@ void	init_stack(t_stack_info *stack)
 	stack->sa_top = stack->sa;
 	stack->sb = NULL;
 	stack->sb_top = stack->sb;
+	stack->sb_size = 0;
 }
 
 void	free_stack(t_stack_info *stack)
