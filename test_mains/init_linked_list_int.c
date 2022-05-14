@@ -19,7 +19,7 @@ void		ft_lstadd_back(t_list **lst, t_list *new);
 int			ft_lstsize(t_list *lst);
 void		ft_lstclear_new(t_list **lst);
 
-void		ft_get_limits(int *arr, int size, t_stack_info *stack_a)
+void	ft_get_limits(int *arr, int size, t_stack_info *stack_a)
 {
 	int		i;
 
@@ -41,9 +41,8 @@ int	main(int argc, char *argv[])
 	t_list			*stack_a;
 	t_list			*stack_a_head;
 	t_stack_info	stack_a_info;
-	
-	int		*stack_a_array;
-	int		i;
+	int				*stack_a_array;
+	int				i;
 
 	if (argc < 2)
 		exit(EXIT_FAILURE);

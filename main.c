@@ -24,24 +24,23 @@ int	main(int argc, char *argv[])
 	if (argc < 2)
 		ft_error(0, NULL);
 	stack_a.sa_size = argc - 1;
-	stack_a.array = malloc (sizeof(int) * (stack_a.sa_size));
-	if (!stack_a.array)
+	stack_a.array_input = malloc (sizeof(int) * (stack_a.sa_size));
+	if (!stack_a.array_input)
 		ft_error(-2, NULL);
 	i = 1;
 	while (argc - i > 0)
 	{
 		if (!check_numeric_param(argv[i]))
-			ft_error(-1, stack_a.array);
+			ft_error(-1, stack_a.array_input);
 		else if (ft_atoi(argv[i]) < INT_MIN || ft_atoi(argv[i]) > INT_MAX)
-			ft_error(-1, stack_a.array);
+			ft_error(-1, stack_a.array_input);
 		else
-			stack_a.array[i - 1] = ft_atoi(argv[i]);
+			stack_a.array_input[i - 1] = ft_atoi(argv[i]);
 		i++;
 	}
-	if (!check_duplicate(stack_a.array, stack_a.sa_size))
-		ft_error(-1, stack_a.array);
+	if (!check_duplicate(stack_a.array_input, stack_a.sa_size))
+		ft_error(-1, stack_a.array_input);
 	push_swap(stack_a);
-	free(stack_a.array);
 	return (0);
 }
 
