@@ -12,7 +12,16 @@
 
 #include "push_swap.h"
 
-void	sort_three(t_stack_info *stack)
+void	sort_small(t_stack_info *stack, int size_after)
+{
+	while (stack->sa_size > 3)
+		ft_pb_smallest(stack, ft_get_smallest(stack->sa, stack->sa_top));
+	sort_three_sa(stack);
+	while (stack->sb_size > size_after)
+		pa(stack);
+}
+
+void	sort_three_sa(t_stack_info *stack)
 {
 	int	num0;
 	int	num1;
@@ -39,15 +48,6 @@ void	sort_three(t_stack_info *stack)
 		rra(stack, 1);
 	else
 		return ;
-}
-
-void	sort_small(t_stack_info *stack)
-{
-	while (stack->sa_size > 3)
-		ft_pb_smallest(stack, ft_get_smallest(stack->sa, stack->sa_top));
-	sort_three(stack);
-	while (stack->sb_size > 0)
-		pa(stack);
 }
 
 int	ft_get_smallest(t_list *lst, t_list *lst_top)

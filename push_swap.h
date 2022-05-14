@@ -72,10 +72,19 @@ void	rrr(t_stack_info *stack);
 /*
 sort_small.c
 */
-void	sort_three(t_stack_info *stack);
-void	sort_small(t_stack_info *stack);
+void	sort_small(t_stack_info *stack, int size_after);
+void	sort_three_sa(t_stack_info *stack);
 int		ft_get_smallest(t_list *lst, t_list *lst_top);
 int		ft_get_index(t_list *lst, t_list *lst_top, int num);
 void	ft_pb_smallest(t_stack_info *stack, int num);
+
+/*
+sort_medium.c
+*/
+void	sort_medium(t_stack_info *stack);
+void	sort_three_sb(t_stack_info *stack);
+void	ft_pb_key(t_stack_info *stack, int num);
+int		ft_get_largest(t_list *lst, t_list *lst_top);
+void	ft_pa_largest(t_stack_info *stack, int num);
 
 #endif
