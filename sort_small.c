@@ -27,9 +27,9 @@ void	sort_three_sa(t_stack_info *stack)
 	int	num1;
 	int	num2;
 
-	num0 = *(int *) stack->sa_top->content;
-	num1 = *(int *) stack->sa_top->next->content;
-	num2 = *(int *) stack->sa_top->next->next->content;
+	num0 = *(*(int **) stack->sa_top->content);
+	num1 = *(*(int **) stack->sa_top->next->content);
+	num2 = *(*(int **) stack->sa_top->next->next->content);
 	if (num0 > num1 && num1 < num2 && num0 < num2)
 		sa(stack, 1);
 	else if (num0 > num1 && num1 > num2 && num0 > num2)

@@ -12,20 +12,6 @@
 
 #include "push_swap.h"
 
-void	init_stack(t_stack_info *stack)
-{
-	int	i;
-
-	stack->sa = NULL;
-	i = 0;
-	while (i < stack->sa_size)
-		ft_lstadd_back(&stack->sa, ft_lstnew(&stack->array_input[i++]));
-	stack->sa_top = stack->sa;
-	stack->sb = NULL;
-	stack->sb_top = stack->sb;
-	stack->sb_size = 0;
-}
-
 int	ft_bubble_sort(int *array, int size)
 {
 	int	swapped;
@@ -50,24 +36,31 @@ int	ft_bubble_sort(int *array, int size)
 	return (swapped);
 }
 
-void	free_stack(t_stack_info *stack)
+void	free_stack_array(t_stack_info *stack)
 {
+	int	i;
+
 	stack->sa = stack->sa_top;
 	ft_lstclear_new(&stack->sa);
 	stack->sb = stack->sb_top;
 	ft_lstclear_new(&stack->sb);
+	i = -1;
+	while (++i < stack->sa_size)
+		free(stack->array_input[i]);
 	free(stack->array_input);
 	free(stack->array_sorted);
 }
 
-void	ft_print_arr(int *array, int size)
+void	ft_print_arr(int **array, int size)
 {
 	int	i;
 
 	i = 0;
 	while (i < size)
 	{
-		ft_putnbr_fd(array[i], 1);
+		ft_putnbr_fd(array[i][0], 1);
+		ft_putchar_fd(',', 1);
+		ft_putnbr_fd(array[i][1], 1);
 		ft_putchar_fd(' ', 1);
 		i++;
 	}
@@ -84,7 +77,7 @@ void	ft_print_lst(t_list *lst, t_list *lst_top)
 	i = 1;
 	while (lst)
 	{
-		ft_putnbr_fd(*(int *)lst->content, 1);
+		ft_putnbr_fd(*(*(int **)lst->content + 0), 1);
 		ft_putchar_fd(' ', 1);
 		lst = lst->next;
 		i++;

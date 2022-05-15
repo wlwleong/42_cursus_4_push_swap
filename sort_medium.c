@@ -14,27 +14,23 @@
 
 void	sort_medium(t_stack_info *stack)
 {
-	int	pivot_key[4];
 	int	size;
 	int	i;
 
 	size = stack->sa_size;
-	pivot_key[0] = stack->array_sorted[size / 4 * 1];
-	pivot_key[1] = stack->array_sorted[size / 4 * 2];
-	pivot_key[2] = stack->array_sorted[size / 4 * 3];
-	i = 0;
-	while (i < 3)
+	i = 1;
+	while (i <= 4)
 	{
 		stack->sa = stack->sa_top;
 		while (stack->sa)
 		{
-			if (*(int *) stack->sa->content < pivot_key[i])
+			if (*(int *) stack->sa->content < stack->array_sorted[size / 4 * i])
 				ft_pb_key(stack, *(int *) stack->sa->content);
 			stack->sa = stack->sa->next;
 		}
 		i++;
 	}
-	sort_small(stack, (size / 4 * 3));
+	sort_small(stack, stack->array_sorted[size / 4 * 3]);
 	while (stack->sb_size > 0)
 		ft_pa_largest(stack, ft_get_largest(stack->sb, stack->sb_top));
 }

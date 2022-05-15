@@ -12,38 +12,68 @@
 
 #include "push_swap.h"
 
-static int	*ft_array_dup(int *source, int size);
+static void	init_stack(t_stack_info *stack);
+static void	ft_fill_index(t_stack_info *stack);
 
-void	push_swap(t_stack_info sa_info)
+void	push_swap(t_stack_info stack)
 {
-	init_stack(&sa_info);
-	// ft_print_lst(sa_info.sa, sa_info.sa_top);
-	sa_info.array_sorted = ft_array_dup(sa_info.array_input, sa_info.sa_size);
-	if (!ft_bubble_sort(sa_info.array_sorted, sa_info.sa_size))
+	init_stack(&stack);
+	if (!ft_bubble_sort(stack.array_sorted, stack.sa_size))
+	{
+		free_stack_array(&stack);
 		return ;
-	if (sa_info.sa_size == 2)
-		sa(&sa_info, 1);
-	else if (sa_info.sa_size <= 10)
-		sort_small(&sa_info, 0);
-	else
-		sort_medium(&sa_info);
-	// ft_putstr_fd("After sorted: ", 1);
-	// ft_print_lst(sa_info.sa, sa_info.sa_top);
-	// ft_putstr_fd("Bubble sorted: ", 1);
-	// ft_print_arr(sa_info.array_sorted, sa_info.sa_size);
-	free_stack(&sa_info);
+	}
+	ft_fill_index(&stack);
+	if (stack.sa_size == 2)
+		sa(&stack, 1);
+	else if (stack.sa_size == 3)
+		sort_three_sa(&stack);
+	else if (stack.sa_size <= 10)
+		sort_small(&stack, 0);
+	ft_print_arr(stack.array_input, stack.sa_size);
+	ft_putstr_fd("After sorted: ", 1);
+	ft_print_lst(stack.sa, stack.sa_top);
+	free_stack_array(&stack);
 }
 
-static int	*ft_array_dup(int *source, int size)
+static void	init_stack(t_stack_info *stack)
 {
-	int	*copy;
 	int	i;
 
-	copy = malloc (sizeof(int) * size);
+	stack->sa = NULL;
+	i = 0;
+	while (i < stack->sa_size)
+		ft_lstadd_back(&stack->sa, ft_lstnew(&stack->array_input[i++]));
+	stack->sa_top = stack->sa;
+	stack->sb = NULL;
+	stack->sb_top = stack->sb;
+	stack->sb_size = 0;
+	stack->array_sorted = malloc (sizeof(int) * stack->sa_size);
+	if (!stack->array_sorted)
+	{
+		ft_putstr_fd("array_sorted malloc Error!\n", 1);
+		exit(EXIT_FAILURE);
+	}
 	i = -1;
-	while (++i < size)
-		copy[i] = source[i];
-	return (copy);
+	while (++i < stack->sa_size)
+		stack->array_sorted[i] = stack->array_input[i][0];
+}
+
+static void	ft_fill_index(t_stack_info *stack)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < stack->sa_size)
+	{
+		j = -1;
+		while (++j < stack->sa_size)
+		{
+			if (stack->array_input[i][0] == stack->array_sorted[j])
+				stack->array_input[i][1] = j;
+		}
+	}
 }
 
 void	ft_lstclear_new(t_list **lst)

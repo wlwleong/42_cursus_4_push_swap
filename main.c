@@ -12,47 +12,72 @@
 
 #include "push_swap.h"
 
+static int	**init_array(int size);
 static int	check_numeric_param(char *str);
-static int	check_duplicate(int *arr, int size);
-static void	ft_error(int type, void *ptr);
+static int	check_duplicate(int **arr, int size);
+static void	ft_error(int type, int **array_input, int size);
 
 int	main(int argc, char *argv[])
 {
-	t_stack_info	stack_a;
+	t_stack_info	stack;
 	int				i;
 
-	if (argc < 2)
-		ft_error(0, NULL);
-	stack_a.sa_size = argc - 1;
-	stack_a.array_input = malloc (sizeof(int) * (stack_a.sa_size));
-	if (!stack_a.array_input)
-		ft_error(-2, NULL);
+	if (argc < 3)
+		ft_error(0, NULL, 0);
+	stack.sa_size = argc - 1;
+	stack.array_input = init_array(stack.sa_size);
 	i = 1;
 	while (argc - i > 0)
 	{
 		if (!check_numeric_param(argv[i]))
-			ft_error(-1, stack_a.array_input);
+			ft_error(-1, stack.array_input, stack.sa_size);
 		else if (ft_atoi(argv[i]) < INT_MIN || ft_atoi(argv[i]) > INT_MAX)
-			ft_error(-1, stack_a.array_input);
+			ft_error(-1, stack.array_input, stack.sa_size);
 		else
-			stack_a.array_input[i - 1] = ft_atoi(argv[i]);
+			stack.array_input[i - 1][0] = ft_atoi(argv[i]);
 		i++;
 	}
-	if (!check_duplicate(stack_a.array_input, stack_a.sa_size))
-		ft_error(-1, stack_a.array_input);
-	push_swap(stack_a);
+	if (!check_duplicate(stack.array_input, stack.sa_size))
+		ft_error(-1, stack.array_input, stack.sa_size);
+	push_swap(stack);
 	return (0);
 }
 
-static void	ft_error(int type, void *ptr)
+static int	**init_array(int size)
 {
+	int	**array;
+	int	i;
+
+	array = malloc (sizeof(int *) * size);
+	if (!array)
+		ft_error(-2, NULL, 0);
+	i = 0;
+	while (i < size)
+	{
+		array[i] = malloc (sizeof(int) * 2);
+		if (!array[i])
+			ft_error(-2, NULL, 0);
+		array[i][0] = 0;
+		array[i][1] = 0;
+		i++;
+	}
+	return (array);
+}
+
+static void	ft_error(int type, int **array_input, int size)
+{
+	int	i;
+
 	if (type == -1)
 	{
 		write(1, "Error\n", 6);
-		free(ptr);
+		i = 0;
+		while (i < size)
+			free(array_input[i++]);
+		free(array_input);
 	}
 	else if (type == -2)
-		write(1, "malloc Error\n", 13);
+		ft_putstr_fd("malloc Error\n", 1);
 	exit(EXIT_FAILURE);
 }
 
@@ -72,7 +97,7 @@ static int	check_numeric_param(char *str)
 	return (1);
 }
 
-static int	check_duplicate(int *arr, int size)
+static int	check_duplicate(int **arr, int size)
 {
 	int	i;
 	int	j;
@@ -85,7 +110,7 @@ static int	check_duplicate(int *arr, int size)
 		{
 			if (i != j)
 			{
-				if (arr[i] == arr[j])
+				if (arr[i][0] == arr[j][0])
 					return (0);
 			}
 			j++;

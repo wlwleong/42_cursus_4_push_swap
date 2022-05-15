@@ -21,7 +21,7 @@
 
 typedef struct s_stack_info
 {
-	int		*array_input;
+	int		**array_input;
 	int		*array_sorted;
 	int		sa_size;
 	t_list	*sa_top;
@@ -40,10 +40,9 @@ void	ft_lstclear_new(t_list **lst);
 /*
 push_swap_utils.c
 */
-void	init_stack(t_stack_info *stack);
 int		ft_bubble_sort(int *array, int size);
-void	free_stack(t_stack_info *stack);
-void	ft_print_arr(int *array, int size);
+void	free_stack_array(t_stack_info *stack);
+void	ft_print_arr(int **array, int size);
 void	ft_print_lst(t_list *lst, t_list *lst_top);
 
 /*
@@ -81,10 +80,10 @@ void	ft_pb_smallest(t_stack_info *stack, int num);
 /*
 sort_medium.c
 */
-void	sort_medium(t_stack_info *stack);
-void	sort_three_sb(t_stack_info *stack);
-void	ft_pb_key(t_stack_info *stack, int num);
-int		ft_get_largest(t_list *lst, t_list *lst_top);
-void	ft_pa_largest(t_stack_info *stack, int num);
+// void	sort_medium(t_stack_info *stack);
+// void	sort_three_sb(t_stack_info *stack);
+// void	ft_pb_key(t_stack_info *stack, int num);
+// int		ft_get_largest(t_list *lst, t_list *lst_top);
+// void	ft_pa_largest(t_stack_info *stack, int num);
 
 #endif
