@@ -73,7 +73,6 @@ sort_small.c
 */
 void	sort_small(t_stack_info *stack, int size_after);
 void	sort_three_sa(t_stack_info *stack);
-int		ft_get_smallest(t_list *lst, t_list *lst_top);
 int		ft_get_index(t_list *lst, t_list *lst_top, int num);
 void	ft_pb_smallest(t_stack_info *stack, int num);
 
