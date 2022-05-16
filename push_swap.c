@@ -29,7 +29,9 @@ void	push_swap(t_stack_info stack)
 	else if (stack.sa_size == 3)
 		sort_three_sa(&stack);
 	else if (stack.sa_size <= 10)
-		sort_small(&stack, 0);
+		sort_small(&stack);
+	else
+		sort_medium(&stack);
 	// ft_print_arr(stack.array_input, stack.sa_size);
 	// ft_putstr_fd("After sorted: ", 1);
 	// ft_print_lst(stack.sa, stack.sa_top);

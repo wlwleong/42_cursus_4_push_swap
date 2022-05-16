@@ -12,15 +12,15 @@
 
 #include "push_swap.h"
 
-void	sort_small(t_stack_info *stack, int size_after)
+void	sort_small(t_stack_info *stack)
 {
 	int	push_index;
 
 	push_index = 0;
 	while (stack->sa_size > 3)
-		ft_pb_smallest(stack, push_index++);
+		ft_push_b(stack, push_index++);
 	sort_three_sa(stack);
-	while (stack->sb_size > size_after)
+	while (stack->sb_size > 0)
 		pa(stack);
 }
 
@@ -58,7 +58,7 @@ int	ft_get_index(t_list *lst, t_list *lst_top, int sorted_index)
 	int	index;
 
 	lst = lst_top;
-	index = 1;
+	index = 0;
 	while (*(*(int **) lst->content + 1) != sorted_index && lst)
 	{
 		lst = lst->next;
@@ -67,7 +67,7 @@ int	ft_get_index(t_list *lst, t_list *lst_top, int sorted_index)
 	return (index);
 }
 
-void	ft_pb_smallest(t_stack_info *stack, int sorted_index)
+void	ft_push_b(t_stack_info *stack, int sorted_index)
 {
 	int	proximity;
 	int	reverse;
