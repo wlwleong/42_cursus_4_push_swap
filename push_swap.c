@@ -13,7 +13,7 @@
 #include "push_swap.h"
 
 static void	init_stack(t_stack_info *stack);
-static void	ft_fill_index(t_stack_info *stack);
+static void	update_stack(t_stack_info *stack);
 
 void	push_swap(t_stack_info stack)
 {
@@ -23,7 +23,7 @@ void	push_swap(t_stack_info stack)
 		free_stack_array(&stack);
 		return ;
 	}
-	ft_fill_index(&stack);
+	update_stack(&stack);
 	if (stack.sa_size == 2)
 		sa(&stack, 1);
 	else if (stack.sa_size == 3)
@@ -61,11 +61,13 @@ static void	init_stack(t_stack_info *stack)
 		stack->array_sorted[i] = stack->array_input[i][0];
 }
 
-static void	ft_fill_index(t_stack_info *stack)
+static void	update_stack(t_stack_info *stack)
 {
 	int	i;
 	int	j;
 
+	stack->min_int = stack->array_sorted[0];
+	stack->max_int = stack->array_sorted[stack->sa_size - 1];
 	i = -1;
 	while (++i < stack->sa_size)
 	{

@@ -12,33 +12,52 @@
 
 #include "push_swap.h"
 
-void	sort_medium(t_stack_info *stack)
+void	ft_print_lst_full(t_list *lst, t_list *lst_top)
 {
-	int	push_i;
-	int	size;
 	int	i;
 
-	size = stack->sa_size;
+	if (!lst)
+		return ;
+	lst = lst_top;
 	i = 1;
-	while (i < 4)
+	while (lst)
+	{
+		ft_putnbr_fd(*(*(int **)lst->content + 0), 1);
+		ft_putchar_fd(',', 1);
+		ft_putnbr_fd(*(*(int **)lst->content + 1), 1);
+		ft_putchar_fd(' ', 1);
+		lst = lst->next;
+		i++;
+	}
+	ft_putchar_fd('\n', 1);
+}
+
+void	sort_medium(t_stack_info *stack)
+{
+	int	pivot_index[4];
+	int	i;
+
+	i = -1;
+	while (++i < 4 - 1)
+		pivot_index[i] = stack->sa_size / 4 * (i + 1);
+	i = -1;
+	while (++i < 4 - 1)
 	{
 		stack->sa = stack->sa_top;
 		while (stack->sa)
 		{
-			if (*(*(int **) stack->sa->content + 1) < size / 4 * i)
+			if (*(*(int **) stack->sa->content + 1) < pivot_index[i])
 				ft_push_b(stack, *(*(int **) stack->sa->content + 1));
 			stack->sa = stack->sa->next;
 		}
-		i++;
 	}
-	push_i = ft_find_min(stack->sa, stack->sa_top, stack->array_sorted[size - 1]);
-	while (stack->sa_size > 0)
-		ft_push_b(stack, push_i++);
-	while (stack->sb_size > size - size / 4)
+	while (stack->sa_size > 1)
+		ft_push_b(stack, ft_find_min(stack->sa, stack->sa_top, stack->max_int));
+	while (stack->sb_size > pivot_index[2])
 		pa(stack);
-	push_i = ft_find_max(stack->sb, stack->sb_top, stack->array_sorted[0]);
-	while (stack->sb_size > 0)
-		ft_push_a(stack, push_i--);
+	while (stack->sb_size > 1)
+		ft_push_a(stack, ft_find_max(stack->sb, stack->sb_top, stack->min_int));
+	pa(stack);
 }
 
 int	ft_find_min(t_list *lst, t_list *lst_top, int stack_max)
@@ -47,17 +66,19 @@ int	ft_find_min(t_list *lst, t_list *lst_top, int stack_max)
 	int	return_index;
 
 	min = stack_max;
-	return_index = 0;
+	return_index = -1;
 	lst = lst_top;
 	while (lst)
 	{
-		if (*(*(int **) lst->content) < min)
+		if (*(*(int **) lst->content + 0) < min)
 		{
 			min = *(*(int **) lst->content + 0);
 			return_index = *(*(int **) lst->content + 1);
 		}
 		lst = lst->next;
 	}
+	if (return_index == -1)
+		ft_putstr_fd("Error. min not found!\n", 1);
 	return (return_index);
 }
 
@@ -67,17 +88,19 @@ int	ft_find_max(t_list *lst, t_list *lst_top, int stack_min)
 	int	return_index;
 
 	max = stack_min;
-	return_index = 0;
+	return_index = -1;
 	lst = lst_top;
 	while (lst)
 	{
-		if (*(*(int **) lst->content) > max)
+		if (*(*(int **) lst->content + 0) > max)
 		{
 			max = *(*(int **) lst->content + 0);
 			return_index = *(*(int **) lst->content + 1);
 		}
 		lst = lst->next;
 	}
+	if (return_index == -1)
+		ft_putstr_fd("Error. max not found!\n", 1);
 	return (return_index);
 }
 

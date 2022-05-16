@@ -23,6 +23,8 @@ typedef struct s_stack_info
 {
 	int		**array_input;
 	int		*array_sorted;
+	int		min_int;
+	int		max_int;
 	int		sa_size;
 	t_list	*sa_top;
 	t_list	*sa;
