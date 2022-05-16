@@ -12,16 +12,14 @@
 
 #include "push_swap.h"
 
-void	sort_medium(t_stack_info *stack)
+void	sort_medium(t_stack_info *stack, int part)
 {
-	int	pivot_index[4];
+	int	*pivot_index;
 	int	i;
 
+	pivot_index = ft_get_pivot(stack->sa_size, part);
 	i = -1;
-	while (++i < 4 - 1)
-		pivot_index[i] = stack->sa_size / 4 * (i + 1);
-	i = -1;
-	while (++i < 4 - 1)
+	while (++i < part - 1)
 	{
 		stack->sa = stack->sa_top;
 		while (stack->sa)
@@ -33,11 +31,32 @@ void	sort_medium(t_stack_info *stack)
 	}
 	while (stack->sa_size > 1)
 		ft_push_b(stack, ft_find_min(stack->sa, stack->sa_top, stack->max_int));
-	while (stack->sb_size > pivot_index[2])
+	while (stack->sb_size > pivot_index[part - 2])
 		pa(stack);
 	while (stack->sb_size > 1)
 		ft_push_a(stack, ft_find_max(stack->sb, stack->sb_top, stack->min_int));
 	pa(stack);
+}
+
+int	*ft_get_pivot(int stack_size, int part)
+{
+	int	*pivot;
+	int	i;
+
+	pivot = malloc (sizeof(int) * part);
+	if (!pivot)
+	{
+		ft_putstr_fd("pivot malloc Error!\n", 1);
+		exit(EXIT_FAILURE);
+	}
+	i = 0;
+	while (i < part - 1)
+	{
+		pivot[i] = stack_size / part * (i + 1);
+		i++;
+	}
+	pivot[i] = stack_size;
+	return (pivot);
 }
 
 int	ft_find_min(t_list *lst, t_list *lst_top, int stack_max)

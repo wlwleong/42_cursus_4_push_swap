@@ -81,7 +81,8 @@ void	ft_push_b(t_stack_info *stack, int num);
 /*
 sort_medium.c
 */
-void	sort_medium(t_stack_info *stack);
+void	sort_medium(t_stack_info *stack, int part);
+int		*ft_get_pivot(int stack_size, int part);
 int		ft_find_min(t_list *lst, t_list *lst_top, int stack_max);
 int		ft_find_max(t_list *lst, t_list *lst_top, int stack_min);
 void	ft_push_a(t_stack_info *stack, int sorted_index);
