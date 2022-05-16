@@ -12,26 +12,6 @@
 
 #include "push_swap.h"
 
-void	ft_print_lst_full(t_list *lst, t_list *lst_top)
-{
-	int	i;
-
-	if (!lst)
-		return ;
-	lst = lst_top;
-	i = 1;
-	while (lst)
-	{
-		ft_putnbr_fd(*(*(int **)lst->content + 0), 1);
-		ft_putchar_fd(',', 1);
-		ft_putnbr_fd(*(*(int **)lst->content + 1), 1);
-		ft_putchar_fd(' ', 1);
-		lst = lst->next;
-		i++;
-	}
-	ft_putchar_fd('\n', 1);
-}
-
 void	sort_medium(t_stack_info *stack)
 {
 	int	pivot_index[4];
