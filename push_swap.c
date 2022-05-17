@@ -26,8 +26,6 @@ void	push_swap(t_stack_info stack)
 	update_stack(&stack);
 	if (stack.sa_size == 2)
 		sa(&stack, 1);
-	else if (stack.sa_size == 3)
-		sort_three_sa(&stack);
 	else if (stack.sa_size <= 10)
 		sort_small(&stack);
 	else if (stack.sa_size <= 100)

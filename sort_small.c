@@ -24,35 +24,6 @@ void	sort_small(t_stack_info *stack)
 		pa(stack);
 }
 
-void	sort_three_sa(t_stack_info *stack)
-{
-	int	num0;
-	int	num1;
-	int	num2;
-
-	num0 = *(*(int **) stack->sa_top->content);
-	num1 = *(*(int **) stack->sa_top->next->content);
-	num2 = *(*(int **) stack->sa_top->next->next->content);
-	if (num0 > num1 && num1 < num2 && num0 < num2)
-		sa(stack, 1);
-	else if (num0 > num1 && num1 > num2 && num0 > num2)
-	{
-		sa(stack, 1);
-		rra(stack, 1);
-	}
-	else if (num0 > num1 && num1 < num2 && num0 > num2)
-		ra(stack, 1);
-	else if (num0 < num1 && num1 > num2 && num0 < num2)
-	{
-		sa(stack, 1);
-		ra(stack, 1);
-	}
-	else if (num0 < num1 && num1 > num2 && num0 > num2)
-		rra(stack, 1);
-	else
-		return ;
-}
-
 int	ft_get_index(t_list *lst, t_list *lst_top, int sorted_index)
 {
 	int	index;
@@ -65,24 +36,4 @@ int	ft_get_index(t_list *lst, t_list *lst_top, int sorted_index)
 		index++;
 	}
 	return (index);
-}
-
-void	ft_push_b(t_stack_info *stack, int sorted_index)
-{
-	int	proximity;
-	int	reverse;
-
-	reverse = 0;
-	proximity = (stack->sa_size / 2) + (stack->sa_size % 2);
-	if (proximity > ft_get_index(stack->sa, stack->sa_top, sorted_index))
-		reverse = 1;
-	stack->sa = stack->sa_top;
-	while (*(*(int **) stack->sa->content + 1) != sorted_index && stack->sa)
-	{
-		if (reverse)
-			ra(stack, 1);
-		else
-			rra(stack, 1);
-	}
-	pb(stack);
 }

@@ -78,6 +78,8 @@ void	ft_print_lst(t_list *lst, t_list *lst_top)
 	while (lst)
 	{
 		ft_putnbr_fd(*(*(int **)lst->content + 0), 1);
+		ft_putchar_fd(',', 1);
+		ft_putnbr_fd(*(*(int **)lst->content + 1), 1);
 		ft_putchar_fd(' ', 1);
 		lst = lst->next;
 		i++;
