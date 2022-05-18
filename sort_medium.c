@@ -31,6 +31,7 @@ void	sort_medium(t_stack_info *stack, int part)
 	while (stack->sb_size > 1)
 		ft_push_a(stack, ft_find_max(stack->sb, stack->sb_top, stack->min_int));
 	pa(stack);
+	free(pivot_index);
 }
 
 int	*ft_get_pivot(int stack_size, int part)
