@@ -22,10 +22,11 @@ void	sort_medium(t_stack_info *stack, int part)
 	while (++i < part - 1)
 	{
 		while (ft_push_less(stack, pivot_index[i]))
-			;
+			continue;
 	}
-	while (stack->sa_size > 1)
+	while (stack->sa_size > 5)
 		ft_push_b(stack, ft_find_min(stack->sa, stack->sa_top, stack->max_int));
+	sort_three_sa(stack);
 	while (stack->sb_size > pivot_index[part - 2])
 		pa(stack);
 	while (stack->sb_size > 1)

@@ -51,21 +51,21 @@ void	sort_three_sb(t_stack_info *stack)
 	num1 = *(*(int **) stack->sb_top->next->content);
 	num2 = *(*(int **) stack->sb_top->next->next->content);
 	if (num0 > num1 && num1 < num2 && num0 < num2)
-		sb(stack, 1);
-	else if (num0 > num1 && num1 > num2 && num0 > num2)
+		rrb(stack, 1);
+	else if (num0 < num1 && num1 < num2 && num0 < num2)
 	{
 		sb(stack, 1);
 		rrb(stack, 1);
 	}
 	else if (num0 > num1 && num1 < num2 && num0 > num2)
-		rb(stack, 1);
-	else if (num0 < num1 && num1 > num2 && num0 < num2)
 	{
-		sb(stack, 1);
-		rb(stack, 1);
-	}
-	else if (num0 < num1 && num1 > num2 && num0 > num2)
 		rrb(stack, 1);
+		sb(stack, 1);
+	}
+	else if (num0 < num1 && num1 > num2 && num0 < num2)
+		rb(stack, 1);
+	else if (num0 < num1 && num1 > num2 && num0 > num2)
+		sb(stack, 1);
 	else
 		return ;
 }
