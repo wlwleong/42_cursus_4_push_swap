@@ -96,7 +96,13 @@ void	ft_push_a(t_stack_info *stack, int sorted_index);
 sort_utils_2.c
 */
 int		ft_push_less(t_stack_info *stack, int pivot);
-int		ft_find_top(t_list *lst, t_list *lst_top, int pivot);
-int		ft_find_bottom(t_list *lst, t_list *lst_top, int pivot);
+int		ft_find_top_less(t_list *lst, t_list *lst_top, int pivot);
+int		ft_find_last_less(t_list *lst, t_list *lst_top, int pivot);
+
+/*
+sort_utils_3.c
+*/
+int		ft_find_max_pos(t_list *lst, t_list *lst_top, int stack_max);
+int		ft_find_min_pos(t_list *lst, t_list *lst_top, int stack_min);
 
 #endif

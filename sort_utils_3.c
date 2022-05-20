@@ -12,64 +12,38 @@
 
 #include "push_swap.h"
 
-int	ft_push_less(t_stack_info *stack, int pivot)
+int	ft_find_max_pos(t_list *lst, t_list *lst_top, int stack_max)
 {
-	int	top_i;
-	int	last_i;
-	int	i;
-
-	top_i = ft_find_top_less(stack->sa, stack->sa_top, pivot);
-	last_i = ft_find_last_less(stack->sa, stack->sa_top, pivot);
-	if (top_i < 0 || last_i < 0)
-		return (0);
-	if (top_i < (stack->sa_size - last_i))
-	{
-		i = 0;
-		while (i++ < top_i)
-			ra(stack, 1);
-	}
-	else
-	{
-		i = 0;
-		while (i++ < (stack->sa_size - last_i))
-			rra(stack, 1);
-	}
-	pb(stack);
-	return (1);
-}
-
-int	ft_find_top_less(t_list *lst, t_list *lst_top, int pivot)
-{
-	int	top_index;
+	int	max_index;
 	int	index;
 
-	top_index = -1;
+	max_index = -1;
 	index = 0;
 	lst = lst_top;
-	while (lst && top_index == -1)
+	while (lst && max_index == -1)
 	{
-		if (*(*(int **) lst->content + 1) < pivot)
-			top_index = index;
+		if (*(*(int **) lst->content + 1) == stack_max)
+			max_index = index;
 		lst = lst->next;
 		index++;
 	}
-	return (top_index);
+	return (max_index);
 }
 
-int	ft_find_last_less(t_list *lst, t_list *lst_top, int pivot)
+int	ft_find_min_pos(t_list *lst, t_list *lst_top, int stack_min)
 {
-	int	last_index;
+	int	min_index;
 	int	index;
 
-	last_index = -1;
+	min_index = -1;
 	index = 0;
 	lst = lst_top;
-	while (lst)
+	while (lst && min_index == -1)
 	{
-		if (*(*(int **) lst->content + 1) < pivot)
-			last_index = index;
+		if (*(*(int **) lst->content + 1) == stack_min)
+			min_index = index;
 		lst = lst->next;
 		index++;
 	}
-	return (last_index);
+	return (min_index);
 }
