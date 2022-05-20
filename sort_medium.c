@@ -22,7 +22,7 @@ void	sort_medium(t_stack_info *stack, int part)
 	while (++i < part - 1)
 	{
 		while (ft_push_less(stack, pivot_index[i]))
-			continue;
+			continue ;
 	}
 	while (stack->sa_size > 3)
 		ft_push_b(stack, ft_find_min(stack->sa, stack->sa_top, stack->max_int));
@@ -30,12 +30,7 @@ void	sort_medium(t_stack_info *stack, int part)
 	while (stack->sb_size > pivot_index[part - 2])
 		pa(stack);
 	while (stack->sb_size > 1)
-	{
-		ft_print_lst(stack->sb, stack->sb_top);
-		printf("max is at %d   min is at %d   stack size = %d\n", ft_find_max_pos(stack->sb, stack->sb_top, ft_find_max(stack->sb, stack->sb_top, stack->min_int)), ft_find_min_pos(stack->sb, stack->sb_top, ft_find_min(stack->sb, stack->sb_top, stack->max_int)), stack->sb_size);
-		fflush(stdout);
 		ft_push_a(stack, ft_find_max(stack->sb, stack->sb_top, stack->min_int));
-	}
 	pa(stack);
 	free(pivot_index);
 }

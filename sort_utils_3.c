@@ -12,9 +12,10 @@
 
 #include "push_swap.h"
 
-int	ft_find_max_pos(t_list *lst, t_list *lst_top, int stack_max)
+int	ft_find_max_pos(t_list *lst, t_list *lst_top, int stack_max, int stack_size)
 {
 	int	max_index;
+	int	center;
 	int	index;
 
 	max_index = -1;
@@ -27,12 +28,16 @@ int	ft_find_max_pos(t_list *lst, t_list *lst_top, int stack_max)
 		lst = lst->next;
 		index++;
 	}
-	return (max_index);
+	center = stack_size / 2 + stack_size % 2;
+	if (max_index > center)
+		return (stack_size - max_index + 1);
+	return (max_index + 1);
 }
 
-int	ft_find_min_pos(t_list *lst, t_list *lst_top, int stack_min)
+int	ft_find_min_pos(t_list *lst, t_list *lst_top, int stack_min, int stack_size)
 {
 	int	min_index;
+	int	center;
 	int	index;
 
 	min_index = -1;
@@ -45,5 +50,8 @@ int	ft_find_min_pos(t_list *lst, t_list *lst_top, int stack_min)
 		lst = lst->next;
 		index++;
 	}
-	return (min_index);
+	center = stack_size / 2 + stack_size % 2;
+	if (min_index > center)
+		return (stack_size - min_index + 1);
+	return (min_index + 1);
 }

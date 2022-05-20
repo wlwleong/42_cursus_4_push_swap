@@ -101,10 +101,15 @@ void	ft_push_a(t_stack_info *stack, int sorted_index)
 		reverse = 1;
 	while (*(*(int **) stack->sb_top->content + 1) != sorted_index && stack->sb)
 	{
-		if (reverse)
-			rb(stack, 1);
+		if (*(*(int **) stack->sb_top->next->content + 1) == sorted_index)
+			sb(stack, 1);
 		else
-			rrb(stack, 1);
+		{
+			if (reverse)
+				rb(stack, 1);
+			else
+				rrb(stack, 1);
+		}
 	}
 	pa(stack);
 }
