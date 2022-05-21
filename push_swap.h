@@ -102,7 +102,10 @@ int		ft_find_last_less(t_list *lst, t_list *lst_top, int pivot);
 /*
 sort_utils_3.c
 */
-int		ft_find_max_pos(t_list *lst, t_list *lst_top, int stack_max, int stack_size);
-int		ft_find_min_pos(t_list *lst, t_list *lst_top, int stack_min, int stack_size);
+void	ft_push_median(t_stack_info *stack, int *pivot);
+void	ft_push_sort(t_stack_info *stack);
+int		ft_find_min_index(t_list *lst, t_list *lst_top, int stack_max);
+int		ft_find_max_index(t_list *lst, t_list *lst_top, int stack_min);
+int		ft_push_part(t_stack_info *stack, int pivot1, int pivot2);
 
 #endif

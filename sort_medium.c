@@ -15,23 +15,43 @@
 void	sort_medium(t_stack_info *stack, int part)
 {
 	int	*pivot_index;
-	int	i;
+	int	max;
+	// int	i;
 
 	pivot_index = ft_get_pivot(stack->sa_size, part);
-	i = -1;
-	while (++i < part - 1)
+	ft_push_median(stack, pivot_index);
+	max = ft_find_max(stack->sb, stack->sb_top, stack->min_int); 
+	ft_push_sort(stack);
+	while (*(*(int **) stack->sa_top->content + 1) != max)
+		ra(stack, 1);
+	while (*(*(int **) stack->sa_top->content + 0) != stack->array_sorted[0])
 	{
-		while (ft_push_less(stack, pivot_index[i]))
-			continue ;
+		if (*(*(int **) stack->sa_top->content + 1) == *(*(int **) ft_lstlast(stack->sa)->content + 1) + 1)
+			ra(stack, 1);
+		else
+		{
+			pb(stack);
+			if (*(*(int **) stack->sb_top->content + 1) < pivot_index[2])
+				rb(stack,1 );
+		}
 	}
-	while (stack->sa_size > 3)
-		ft_push_b(stack, ft_find_min(stack->sa, stack->sa_top, stack->max_int));
-	sort_three_sa(stack);
-	while (stack->sb_size > pivot_index[part - 2])
-		pa(stack);
-	while (stack->sb_size > 1)
-		ft_push_a(stack, ft_find_max(stack->sb, stack->sb_top, stack->min_int));
-	pa(stack);
+	ft_push_sort(stack);
+	while (*(*(int **) stack->sa_top->content + 0) != stack->array_sorted[0])
+		ra(stack, 1);
+	// i = -1;
+	// while (++i < part - 1)
+	// {
+	// 	while (ft_push_less(stack, pivot_index[i]))
+	// 		continue ;
+	// }
+	// while (stack->sa_size > 3)
+	// 	ft_push_b(stack, ft_find_min(stack->sa, stack->sa_top, stack->max_int));
+	// sort_three_sa(stack);
+	// while (stack->sb_size > pivot_index[part - 2])
+	// 	pa(stack);
+	// while (stack->sb_size > 1)
+	// 	ft_push_a(stack, ft_find_max(stack->sb, stack->sb_top, stack->min_int));
+	// pa(stack);
 	free(pivot_index);
 }
 
