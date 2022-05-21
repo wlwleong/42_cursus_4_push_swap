@@ -21,7 +21,7 @@ void	sort_medium(t_stack_info *stack)
 	ft_push_sort(stack);
 	while (stack->n_top_sorted--)
 		ra(stack, 1);
-	ft_push_rest(stack, pivot_index[2]);
+	ft_push_rest(stack);
 	ft_push_sort(stack);
 	while (*(*(int **) stack->sa_top->content + 0) != stack->array_sorted[0])
 		ra(stack, 1);
