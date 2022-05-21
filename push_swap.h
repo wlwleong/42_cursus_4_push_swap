@@ -81,7 +81,15 @@ int		ft_get_index(t_list *lst, t_list *lst_top, int num);
 sort_medium.c
 */
 void	sort_medium(t_stack_info *stack);
-int		*ft_get_pivot(int stack_size, int part);
+int		ft_find_min_index(t_list *lst, t_list *lst_top, int stack_max);
+int		ft_find_max_index(t_list *lst, t_list *lst_top, int stack_min);
+
+/*
+sort_big.c
+*/
+void	sort_big(t_stack_info *stack, int part);
+int		ft_find_min(t_list *lst, t_list *lst_top, int stack_max);
+int		ft_find_max(t_list *lst, t_list *lst_top, int stack_min);
 
 /*
 sort_utils_1.c
@@ -94,17 +102,17 @@ void	ft_push_a(t_stack_info *stack, int sorted_index);
 /*
 sort_utils_2.c
 */
-int		ft_push_less(t_stack_info *stack, int pivot);
-int		ft_find_top_less(t_list *lst, t_list *lst_top, int pivot);
-int		ft_find_last_less(t_list *lst, t_list *lst_top, int pivot);
+int		*ft_get_pivot(int stack_size, int part);
+void	ft_push_median(t_stack_info *stack, int *pivot);
+void	ft_push_sort(t_stack_info *stack);
+void	ft_rb_rrb_pa(t_stack_info *stack, int index, int rotate);
+void	ft_push_rest(t_stack_info *stack, int pivot);
 
 /*
 sort_utils_3.c
 */
-void	ft_push_median(t_stack_info *stack, int *pivot);
-void	ft_push_sort(t_stack_info *stack);
-void	ft_rb_rrb_pa(t_stack_info *stack, int index, int rotate);
-int		ft_find_min_index(t_list *lst, t_list *lst_top, int stack_max);
-int		ft_find_max_index(t_list *lst, t_list *lst_top, int stack_min);
+int		ft_push_less(t_stack_info *stack, int pivot);
+int		ft_find_top_less(t_list *lst, t_list *lst_top, int pivot);
+int		ft_find_last_less(t_list *lst, t_list *lst_top, int pivot);
 
 #endif

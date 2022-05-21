@@ -31,7 +31,7 @@ void	push_swap(t_stack_info stack)
 	else if (stack.sa_size <= 100)
 		sort_medium(&stack);
 	else
-		sort_medium(&stack);
+		sort_big(&stack, 10);
 	free_stack_array(&stack);
 }
 
