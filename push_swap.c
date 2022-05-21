@@ -29,9 +29,9 @@ void	push_swap(t_stack_info stack)
 	else if (stack.sa_size <= 10)
 		sort_small(&stack);
 	else if (stack.sa_size <= 100)
-		sort_medium(&stack, 4);
+		sort_medium(&stack);
 	else
-		sort_medium(&stack, 8);
+		sort_medium(&stack);
 	free_stack_array(&stack);
 }
 
@@ -56,6 +56,7 @@ static void	init_stack(t_stack_info *stack)
 	i = -1;
 	while (++i < stack->sa_size)
 		stack->array_sorted[i] = stack->array_input[i][0];
+	stack->n_top_sorted = 0;
 }
 
 static void	update_stack(t_stack_info *stack)

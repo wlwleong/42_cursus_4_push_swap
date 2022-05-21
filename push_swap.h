@@ -31,6 +31,7 @@ typedef struct s_stack_info
 	int		sb_size;
 	t_list	*sb_top;
 	t_list	*sb;
+	int		n_top_sorted;
 }				t_stack_info;
 
 /*
@@ -79,10 +80,8 @@ int		ft_get_index(t_list *lst, t_list *lst_top, int num);
 /*
 sort_medium.c
 */
-void	sort_medium(t_stack_info *stack, int part);
+void	sort_medium(t_stack_info *stack);
 int		*ft_get_pivot(int stack_size, int part);
-int		ft_find_min(t_list *lst, t_list *lst_top, int stack_max);
-int		ft_find_max(t_list *lst, t_list *lst_top, int stack_min);
 
 /*
 sort_utils_1.c
@@ -104,8 +103,8 @@ sort_utils_3.c
 */
 void	ft_push_median(t_stack_info *stack, int *pivot);
 void	ft_push_sort(t_stack_info *stack);
+void	ft_rb_rrb_pa(t_stack_info *stack, int index, int rotate);
 int		ft_find_min_index(t_list *lst, t_list *lst_top, int stack_max);
 int		ft_find_max_index(t_list *lst, t_list *lst_top, int stack_min);
-int		ft_push_part(t_stack_info *stack, int pivot1, int pivot2);
 
 #endif

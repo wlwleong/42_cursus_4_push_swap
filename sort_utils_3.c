@@ -14,105 +14,80 @@
 
 void	ft_push_median(t_stack_info *stack, int *pivot)
 {
-	int n;
-	int i;
+	int	end;
+	int	i;
 
-	n = stack->sa_size;
-	i = 0;
-
-	while (i < n)
+	end = stack->sa_size;
+	i = -1;
+	while (++i < end)
 	{
 		if (*(*(int **) stack->sa_top->content + 1) < pivot[1])
 		{
 			pb(stack);
 			if (*(*(int **) stack->sb_top->content + 1) < pivot[0])
-				rb(stack,1 );
+			{
+				if (*(*(int **) stack->sa_top->content + 1) > pivot[1])
+				{
+					rr(stack);
+					i++;
+				}
+				else
+					rb(stack, 1);
+			}
 		}
 		else
 			ra(stack, 1);
-		i++;
 	}
 }
 
 void	ft_push_sort(t_stack_info *stack)
 {
-	int	min_i;
-	int	max_i;
-	int	center;
-	int	min_rotate;
+	int	min_i[2];
+	int	max_i[2];
 
 	while (stack->sb_size > 1)
 	{
-		center = stack->sb_size / 2 + stack->sb_size % 2;
-		min_i = ft_find_min_index(stack->sb, stack->sb_top, stack->max_int);
-		max_i = ft_find_max_index(stack->sb, stack->sb_top, stack->min_int);
-		min_rotate = 0;
-		if (min_i < center && max_i < center)
-		{
-			if (min_i < max_i)
-			{
-				while (min_i--)
-					rb(stack, 1);
-				min_rotate = 1;
-			}
-			else
-			{
-				while (max_i--)
-					rb(stack, 1);
-			}
-		}
-		else if (min_i < center && max_i > center)
-		{
-			if (min_i < stack->sb_size - max_i)
-			{
-				while (min_i--)
-					rb(stack, 1);
-				min_rotate = 1;
-			}
-			else
-			{
-				max_i = stack->sb_size - max_i;
-				while (max_i--)
-					rrb(stack, 1);
-			}
-		}
-		else if (min_i > center && max_i < center)
-		{
-			if (stack->sb_size - min_i < max_i)
-			{
-				min_i = stack->sb_size - min_i;
-				while (min_i--)
-					rrb(stack, 1);
-				min_rotate = 1;
-			}
-			else
-			{
-				while (max_i--)
-					rb(stack, 1);
-			}
-		}
+		min_i[0] = ft_find_min_index(stack->sb, stack->sb_top, stack->max_int);
+		max_i[0] = ft_find_max_index(stack->sb, stack->sb_top, stack->min_int);
+		if (min_i[0] < stack->sb_size - min_i[0])
+			min_i[1] = min_i[0];
+		else
+			min_i[1] = stack->sb_size - min_i[0];
+		if (max_i[0] < stack->sb_size - max_i[0])
+			max_i[1] = max_i[0];
+		else
+			max_i[1] = stack->sb_size - max_i[0];
+		if (min_i[1] < max_i[1])
+			ft_rb_rrb_pa(stack, min_i[0], 1);
 		else
 		{
-			min_i = stack->sb_size - min_i;
-			max_i = stack->sb_size - max_i;
-			if (min_i < max_i)
-			{
-				while (min_i--)
-					rrb(stack, 1);
-				min_rotate = 1;
-			}
-			else
-			{
-				while (max_i--)
-					rrb(stack, 1);
-			}
+			ft_rb_rrb_pa(stack, max_i[0], 0);
+			stack->n_top_sorted++;
 		}
-		pa(stack);
-		if (min_rotate)
-			ra(stack, 1);
 	}
 	pa(stack);
-	ra(stack, 1);
+	stack->n_top_sorted++;
+}
+
+void	ft_rb_rrb_pa(t_stack_info *stack, int index, int rotate)
+{
+	int	center;
+
+	center = stack->sb_size / 2 + stack->sb_size % 2;
+	if (index < center)
+	{
+		while (index--)
+			rb(stack, 1);
+	}
+	else
+	{
+		index = stack->sb_size - index;
+		while (index--)
+			rrb(stack, 1);
+	}
+	pa(stack);
+	if (rotate)
+		ra(stack, 1);
 }
 
 int	ft_find_min_index(t_list *lst, t_list *lst_top, int stack_max)
@@ -159,41 +134,4 @@ int	ft_find_max_index(t_list *lst, t_list *lst_top, int stack_min)
 		i++;
 	}
 	return (return_index);
-}
-
-int	ft_push_part(t_stack_info *stack, int pivot1, int pivot2)
-{
-	int n;
-	int	i;
-
-	n = stack->sa_size;
-	i = 0;
-	while (i < n)
-	{
-		// ft_print_lst(stack->sa, stack->sa_top);
-		if (*(*(int **) stack->sa_top->content + 1) < pivot2)
-		{
-			// printf("pushing %d to b...\n", *(*(int **) stack->sa_top->content));
-			pb(stack);
-			if (*(*(int **) stack->sa_top->content) + 1 > pivot2 && *(*(int **) stack->sb_top->content + 1) < pivot1)
-			{
-				// printf("rotating both because %d is in 3rd part...\n", *(*(int **) stack->sa_top->content));
-				rr(stack);
-			}
-			else if (*(*(int **) stack->sb_top->content + 1) < pivot1)
-			{
-				// printf("rotating b because %d is in the 1st part...\n", *(*(int **) stack->sb_top->content));
-				rb(stack, 1);
-			}
-		}
-		else
-		{
-			// printf("rotating a because %d is in the 3rd part\n", *(*(int **) stack->sa_top->content));
-			ra(stack, 1);
-		}
-		i++;
-		// printf("stack size = %d\n", stack->sa_size);
-		fflush(stdout);
-	}
-	return (1);
 }
