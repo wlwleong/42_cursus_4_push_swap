@@ -18,6 +18,8 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <stdio.h>
+# define TOP 0
+# define LAST 1
 
 typedef struct s_stack_info
 {
@@ -114,6 +116,7 @@ int		ft_find_max_index_sb(t_stack_info *stack);
 sort_utils_3.c
 */
 int		ft_push_less(t_stack_info *stack, int pivot, int median);
+int		ft_find_less_sa(t_stack_info *stack, int *index, int pivot);
 int		ft_find_top_less(t_list *lst, int pivot);
 int		ft_find_last_less(t_list *lst, int pivot);
 int		ft_smart_rotate(t_stack_info *stack, int *index1, int *index2);

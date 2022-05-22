@@ -31,7 +31,6 @@ void	sort_big(t_stack_info *stack, int part)
 	sort_three_sa(stack);
 	while (stack->sb_size > pivot_index[part - 2])
 		pa(stack);
-	i = -1;
 	while (stack->sb_size > 0)
 		ft_push_back(stack);
 	ft_push_back(stack);

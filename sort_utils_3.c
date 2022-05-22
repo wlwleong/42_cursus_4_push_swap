@@ -14,27 +14,40 @@
 
 int	ft_push_less(t_stack_info *stack, int pivot, int median)
 {
-	int	top_i;
-	int	last_i;
+	int	index[2];
 
-	top_i = ft_find_top_less(stack->sa_top, pivot);
-	last_i = ft_find_last_less(stack->sa_top, pivot);
-	if (top_i < 0 || last_i < 0)
+	if (ft_find_less_sa(stack, index, pivot) < 0)
 		return (0);
-	if (top_i < (stack->sa_size - last_i))
+	if (index[TOP] < index[LAST])
 	{
-		while (top_i--)
+		while (index[TOP]--)
 			ra(stack, 1);
 	}
 	else
 	{
-		last_i = stack->sa_size - last_i;
-		while (last_i--)
+		while (index[LAST]--)
 			rra(stack, 1);
 	}
 	pb(stack);
 	if (*(*(int **) stack->sb_top->content + 1) <= median)
-		rb(stack, 1);
+	{
+		if (ft_find_less_sa(stack, index, pivot) < 0)
+			return (0);
+		if (index[TOP] > 0 && index[LAST] > 0)
+			rr(stack);
+		else
+			rb(stack, 1);
+	}
+	return (1);
+}
+
+int	ft_find_less_sa(t_stack_info *stack, int *index, int pivot)
+{
+	index[TOP] = ft_find_top_less(stack->sa_top, pivot);
+	index[LAST] = ft_find_last_less(stack->sa_top, pivot);
+	if (index[TOP] < 0 || index[LAST] < 0)
+		return (-1);
+	index[LAST] = stack->sa_size - index[LAST];
 	return (1);
 }
 
