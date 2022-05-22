@@ -111,7 +111,7 @@ void	ft_push_rest(t_stack_info *stack, int pivot);
 /*
 sort_utils_3.c
 */
-int		ft_push_less(t_stack_info *stack, int pivot);
+int		ft_push_less(t_stack_info *stack, int pivot, int base_pivot);
 int		ft_find_top_less(t_list *lst, t_list *lst_top, int pivot);
 int		ft_find_last_less(t_list *lst, t_list *lst_top, int pivot);
 
