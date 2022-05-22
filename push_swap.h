@@ -106,7 +106,7 @@ int		*ft_get_pivot(int stack_size, int part);
 void	ft_push_median(t_stack_info *stack, int *pivot);
 void	ft_push_sort(t_stack_info *stack);
 void	ft_rb_rrb_pa(t_stack_info *stack, int index, int rotate);
-void	ft_push_rest(t_stack_info *stack);
+void	ft_push_rest(t_stack_info *stack, int pivot);
 
 /*
 sort_utils_3.c

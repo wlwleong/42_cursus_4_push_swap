@@ -52,8 +52,7 @@ void	ft_push_median(t_stack_info *stack, int *pivot)
 				i++;
 			}
 			else if (stack->sb_size > 1
-				&& *(*(int **) stack->sb_top->content + 1)
-				< ft_find_min(stack->sb, stack->sb_top, stack->max_int) + 10)
+				&& *(*(int **) stack->sb_top->content + 1) <= 10)
 				rb(stack, 1);
 		}
 		else
@@ -111,10 +110,8 @@ void	ft_rb_rrb_pa(t_stack_info *stack, int index, int rotate)
 		ra(stack, 1);
 }
 
-void	ft_push_rest(t_stack_info *stack)
+void	ft_push_rest(t_stack_info *stack, int pivot)
 {
-	int	min;
-
 	while (*(*(int **) stack->sa_top->content + 0) != stack->array_sorted[0])
 	{
 		if (*(*(int **) stack->sa_top->content + 1)
@@ -125,8 +122,7 @@ void	ft_push_rest(t_stack_info *stack)
 			pb(stack);
 			if (stack->sb_size > 1)
 			{
-				min = ft_find_min(stack->sb, stack->sb_top, stack->max_int);
-				if (*(*(int **) stack->sb_top->content + 1) < min + 10)
+				if (*(*(int **) stack->sb_top->content + 1) <= pivot + 10)
 					rb(stack, 1);
 			}
 		}
