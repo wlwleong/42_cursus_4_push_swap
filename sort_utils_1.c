@@ -79,8 +79,7 @@ void	ft_push_b(t_stack_info *stack, int sorted_index)
 	proximity = (stack->sa_size / 2) + (stack->sa_size % 2);
 	if (proximity > ft_get_index(stack->sa, stack->sa_top, sorted_index))
 		reverse = 1;
-	stack->sa = stack->sa_top;
-	while (*(*(int **) stack->sa->content + 1) != sorted_index && stack->sa)
+	while (*(*(int **) stack->sa_top->content + 1) != sorted_index && stack->sa)
 	{
 		if (reverse)
 			ra(stack, 1);
