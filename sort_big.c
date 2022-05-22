@@ -21,7 +21,7 @@ void	sort_big(t_stack_info *stack, int part)
 	i = -1;
 	while (++i < part - 1)
 	{
-		while (ft_push_less(stack, pivot_index[i], pivot_index[0] * i))
+		while (ft_push_less(stack, pivot_index, i))
 			continue ;
 	}
 	while (stack->sa_size > 3)

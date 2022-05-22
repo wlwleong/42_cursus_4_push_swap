@@ -12,13 +12,13 @@
 
 #include "push_swap.h"
 
-int	ft_push_less(t_stack_info *stack, int pivot, int base_pivot)
+int	ft_push_less(t_stack_info *stack, int *pivot, int i)
 {
 	int	top_i;
 	int	last_i;
 
-	top_i = ft_find_top_less(stack->sa, stack->sa_top, pivot);
-	last_i = ft_find_last_less(stack->sa, stack->sa_top, pivot);
+	top_i = ft_find_top_less(stack->sa, stack->sa_top, pivot[i]);
+	last_i = ft_find_last_less(stack->sa, stack->sa_top, pivot[i]);
 	if (top_i < 0 || last_i < 0)
 		return (0);
 	if (top_i < (stack->sa_size - last_i))
@@ -33,7 +33,7 @@ int	ft_push_less(t_stack_info *stack, int pivot, int base_pivot)
 			rra(stack, 1);
 	}
 	pb(stack);
-	if (*(*(int **) stack->sb_top->content + 1) <= base_pivot + 25)
+	if (*(*(int **) stack->sb_top->content + 1) <= pivot[0] * i + pivot[0] / 2)
 		rb(stack, 1);
 	return (1);
 }
