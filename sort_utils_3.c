@@ -16,7 +16,6 @@ int	ft_push_less(t_stack_info *stack, int pivot)
 {
 	int	top_i;
 	int	last_i;
-	int	i;
 
 	top_i = ft_find_top_less(stack->sa, stack->sa_top, pivot);
 	last_i = ft_find_last_less(stack->sa, stack->sa_top, pivot);
@@ -24,14 +23,13 @@ int	ft_push_less(t_stack_info *stack, int pivot)
 		return (0);
 	if (top_i < (stack->sa_size - last_i))
 	{
-		i = 0;
-		while (i++ < top_i)
+		while (top_i--)
 			ra(stack, 1);
 	}
 	else
 	{
-		i = 0;
-		while (i++ < (stack->sa_size - last_i))
+		last_i = stack->sa_size - last_i;
+		while (last_i--)
 			rra(stack, 1);
 	}
 	pb(stack);
