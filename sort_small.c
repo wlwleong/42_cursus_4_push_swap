@@ -24,16 +24,17 @@ void	sort_small(t_stack_info *stack)
 		pa(stack);
 }
 
-int	ft_get_index(t_list *lst, t_list *lst_top, int sorted_index)
+int	ft_get_index(t_list *lst, int to_find)
 {
 	int	index;
 
-	lst = lst_top;
 	index = 0;
-	while (*(*(int **) lst->content + 1) != sorted_index && lst)
+	while (lst)
 	{
+		if (*(*(int **) lst->content + 1) == to_find)
+			return (index);
 		lst = lst->next;
 		index++;
 	}
-	return (index);
+	return (-1);
 }

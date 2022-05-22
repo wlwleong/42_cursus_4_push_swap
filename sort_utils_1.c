@@ -41,35 +41,6 @@ void	sort_three_sa(t_stack_info *stack)
 		return ;
 }
 
-void	sort_three_sb(t_stack_info *stack)
-{
-	int	num0;
-	int	num1;
-	int	num2;
-
-	num0 = *(*(int **) stack->sb_top->content);
-	num1 = *(*(int **) stack->sb_top->next->content);
-	num2 = *(*(int **) stack->sb_top->next->next->content);
-	if (num0 > num1 && num1 < num2 && num0 < num2)
-		rrb(stack, 1);
-	else if (num0 < num1 && num1 < num2 && num0 < num2)
-	{
-		sb(stack, 1);
-		rrb(stack, 1);
-	}
-	else if (num0 > num1 && num1 < num2 && num0 > num2)
-	{
-		rrb(stack, 1);
-		sb(stack, 1);
-	}
-	else if (num0 < num1 && num1 > num2 && num0 < num2)
-		rb(stack, 1);
-	else if (num0 < num1 && num1 > num2 && num0 > num2)
-		sb(stack, 1);
-	else
-		return ;
-}
-
 void	ft_push_b(t_stack_info *stack, int sorted_index)
 {
 	int	proximity;
@@ -77,7 +48,7 @@ void	ft_push_b(t_stack_info *stack, int sorted_index)
 
 	reverse = 0;
 	proximity = (stack->sa_size / 2) + (stack->sa_size % 2);
-	if (proximity > ft_get_index(stack->sa, stack->sa_top, sorted_index))
+	if (proximity > ft_get_index(stack->sa_top, sorted_index))
 		reverse = 1;
 	while (*(*(int **) stack->sa_top->content + 1) != sorted_index && stack->sa)
 	{
@@ -96,7 +67,7 @@ void	ft_push_a(t_stack_info *stack, int sorted_index)
 
 	reverse = 0;
 	proximity = (stack->sb_size / 2) + (stack->sb_size % 2);
-	if (proximity > ft_get_index(stack->sb, stack->sb_top, sorted_index))
+	if (proximity > ft_get_index(stack->sb_top, sorted_index))
 		reverse = 1;
 	while (*(*(int **) stack->sb_top->content + 1) != sorted_index && stack->sb)
 	{

@@ -28,48 +28,47 @@ void	sort_medium(t_stack_info *stack)
 	free(pivot_index);
 }
 
-int	ft_find_min_index(t_list *lst, t_list *lst_top, int stack_max)
+void	ft_push_median(t_stack_info *stack, int *pivot)
 {
-	int	min;
-	int	return_index;
+	int	end;
 	int	i;
 
-	min = stack_max;
-	return_index = -1;
-	i = 0;
-	lst = lst_top;
-	while (lst)
+	end = stack->sa_size;
+	i = -1;
+	while (++i < end)
 	{
-		if (*(*(int **) lst->content + 0) < min)
+		if (*(*(int **) stack->sa_top->content + 1) < pivot[1])
 		{
-			min = *(*(int **) lst->content + 0);
-			return_index = i;
+			pb(stack);
+			if (*(*(int **) stack->sb_top->content + 1) < pivot[0]
+				&& (*(*(int **) stack->sa_top->content + 1) > pivot[1]))
+			{
+				rr(stack);
+				i++;
+			}
+			else if (stack->sb_size > 1
+				&& *(*(int **) stack->sb_top->content + 1) <= 10)
+				rb(stack, 1);
 		}
-		lst = lst->next;
-		i++;
+		else
+			ra(stack, 1);
 	}
-	return (return_index);
 }
 
-int	ft_find_max_index(t_list *lst, t_list *lst_top, int stack_min)
+void	ft_push_rest(t_stack_info *stack, int pivot)
 {
-	int	max;
-	int	return_index;
-	int	i;
-
-	max = stack_min;
-	return_index = -1;
-	i = 0;
-	lst = lst_top;
-	while (lst)
+	while (*(*(int **) stack->sa_top->content + 0) != stack->array_sorted[0])
 	{
-		if (*(*(int **) lst->content + 0) > max)
+		if (*(*(int **) stack->sa_top->content + 1) == stack->sa_last[1] + 1)
+			ra(stack, 1);
+		else
 		{
-			max = *(*(int **) lst->content + 0);
-			return_index = i;
+			pb(stack);
+			if (stack->sb_size > 1)
+			{
+				if (*(*(int **) stack->sb_top->content + 1) <= pivot + 10)
+					rb(stack, 1);
+			}
 		}
-		lst = lst->next;
-		i++;
 	}
-	return (return_index);
 }

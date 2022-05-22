@@ -56,6 +56,7 @@ static void	init_stack(t_stack_info *stack)
 	i = -1;
 	while (++i < stack->sa_size)
 		stack->array_sorted[i] = stack->array_input[i][0];
+	stack->size = i;
 	stack->n_top_sorted = 0;
 }
 
@@ -76,21 +77,4 @@ static void	update_stack(t_stack_info *stack)
 				stack->array_input[i][1] = j;
 		}
 	}
-}
-
-void	ft_lstclear_new(t_list **lst)
-{
-	t_list	*list;
-	t_list	*temp;
-
-	list = *lst;
-	if (!list)
-		return ;
-	while (list)
-	{
-		temp = list->next;
-		free(list);
-		list = temp;
-	}
-	*lst = NULL;
 }

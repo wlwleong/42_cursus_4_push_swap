@@ -41,9 +41,9 @@ void	free_stack_array(t_stack_info *stack)
 	int	i;
 
 	stack->sa = stack->sa_top;
-	ft_lstclear_new(&stack->sa);
+	ft_lstclear(&stack->sa);
 	stack->sb = stack->sb_top;
-	ft_lstclear_new(&stack->sb);
+	ft_lstclear(&stack->sb);
 	i = -1;
 	while (++i < stack->sa_size)
 		free(stack->array_input[i]);
@@ -67,13 +67,12 @@ void	ft_print_arr(int **array, int size)
 	ft_putchar_fd('\n', 1);
 }
 
-void	ft_print_lst(t_list *lst, t_list *lst_top)
+void	ft_print_lst(t_list *lst)
 {
 	int	i;
 
 	if (!lst)
 		return ;
-	lst = lst_top;
 	i = 1;
 	while (lst)
 	{
