@@ -39,7 +39,7 @@ int	main(int argc, char *argv[])
 	}
 	if (!check_duplicate(stack.array_input, stack.sa_size))
 		ft_error(-1, stack.array_input, stack.sa_size);
-	push_swap(stack);
+	push_swap(&stack);
 	return (0);
 }
 

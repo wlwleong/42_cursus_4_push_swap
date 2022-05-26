@@ -42,7 +42,7 @@ typedef struct s_stack_info
 /*
 push_swap.c
 */
-void	push_swap(t_stack_info sa_info);
+void	push_swap(t_stack_info *sa_info);
 
 /*
 push_swap_utils.c
