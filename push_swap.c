@@ -15,24 +15,24 @@
 static void	init_stack(t_stack_info *stack);
 static void	update_stack(t_stack_info *stack);
 
-void	push_swap(t_stack_info stack)
+void	push_swap(t_stack_info *stack)
 {
-	init_stack(&stack);
-	if (!ft_bubble_sort(stack.array_sorted, stack.sa_size))
+	init_stack(stack);
+	if (!ft_bubble_sort(stack->array_sorted, stack->sa_size))
 	{
-		free_stack_array(&stack);
+		free_stack_array(stack);
 		return ;
 	}
-	update_stack(&stack);
-	if (stack.sa_size == 2)
-		sa(&stack, 1);
-	else if (stack.sa_size <= 10)
-		sort_small(&stack);
-	else if (stack.sa_size <= 100)
-		sort_big(&stack, 4);
+	update_stack(stack);
+	if (stack->sa_size == 2)
+		sa(stack, 1);
+	else if (stack->sa_size <= 10)
+		sort_small(stack);
+	else if (stack->sa_size <= 100)
+		sort_big(stack, 4);
 	else
-		sort_big(&stack, 10);
-	free_stack_array(&stack);
+		sort_big(stack, 10);
+	free_stack_array(stack);
 }
 
 static void	init_stack(t_stack_info *stack)
