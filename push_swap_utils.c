@@ -12,38 +12,12 @@
 
 #include "push_swap.h"
 
-int	ft_bubble_sort(int *array, int size)
-{
-	int	swapped;
-	int	temp;
-	int	i;
-
-	swapped = 0;
-	i = 0;
-	while (i < size - 1)
-	{
-		if (array[i] > array[i + 1])
-		{
-			temp = array[i];
-			array[i] = array[i + 1];
-			array[i + 1] = temp;
-			swapped = 1;
-		}
-		i++;
-	}
-	if (swapped)
-		ft_bubble_sort(array, size - 1);
-	return (swapped);
-}
-
 void	free_stack_array(t_stack_info *stack)
 {
 	int	i;
 
-	stack->sa = stack->sa_top;
-	ft_lstclear(&stack->sa);
-	stack->sb = stack->sb_top;
-	ft_lstclear(&stack->sb);
+	ft_lstclear(&stack->sa_top);
+	ft_lstclear(&stack->sb_top);
 	i = -1;
 	while (++i < stack->sa_size)
 		free(stack->array_input[i]);

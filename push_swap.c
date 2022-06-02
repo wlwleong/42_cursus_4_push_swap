@@ -13,6 +13,7 @@
 #include "push_swap.h"
 
 static void	init_stack(t_stack_info *stack);
+static int	ft_bubble_sort(int *array, int size);
 static void	update_stack(t_stack_info *stack);
 
 void	push_swap(t_stack_info *stack)
@@ -58,6 +59,31 @@ static void	init_stack(t_stack_info *stack)
 		stack->array_sorted[i] = stack->array_input[i][0];
 	stack->size = i;
 	stack->n_top_sorted = 0;
+	stack->n_operations = 0;
+}
+
+static int	ft_bubble_sort(int *array, int size)
+{
+	int	swapped;
+	int	temp;
+	int	i;
+
+	swapped = 0;
+	i = 0;
+	while (i < size - 1)
+	{
+		if (array[i] > array[i + 1])
+		{
+			temp = array[i];
+			array[i] = array[i + 1];
+			array[i + 1] = temp;
+			swapped = 1;
+		}
+		i++;
+	}
+	if (swapped)
+		ft_bubble_sort(array, size - 1);
+	return (swapped);
 }
 
 static void	update_stack(t_stack_info *stack)

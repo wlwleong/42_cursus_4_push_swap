@@ -21,20 +21,5 @@ void	sort_small(t_stack_info *stack)
 		ft_push_b(stack, push_index++);
 	sort_three_sa(stack);
 	while (stack->sb_size > 0)
-		pa(stack);
-}
-
-int	ft_get_index(t_list *lst, int to_find)
-{
-	int	index;
-
-	index = 0;
-	while (lst)
-	{
-		if (*(*(int **) lst->content + 1) == to_find)
-			return (index);
-		lst = lst->next;
-		index++;
-	}
-	return (-1);
+		pa(stack, 1);
 }

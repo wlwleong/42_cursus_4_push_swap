@@ -57,7 +57,7 @@ void	ft_push_b(t_stack_info *stack, int sorted_index)
 		else
 			rra(stack, 1);
 	}
-	pb(stack);
+	pb(stack, 1);
 }
 
 void	ft_push_a(t_stack_info *stack, int sorted_index)
@@ -81,5 +81,20 @@ void	ft_push_a(t_stack_info *stack, int sorted_index)
 				rrb(stack, 1);
 		}
 	}
-	pa(stack);
+	pa(stack, 1);
+}
+
+int	ft_get_index(t_list *lst, int to_find)
+{
+	int	index;
+
+	index = 0;
+	while (lst)
+	{
+		if (*(*(int **) lst->content + 1) == to_find)
+			return (index);
+		lst = lst->next;
+		index++;
+	}
+	return (-1);
 }

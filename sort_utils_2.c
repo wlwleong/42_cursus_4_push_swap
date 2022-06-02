@@ -33,20 +33,62 @@ int	*ft_get_pivot(int stack_size, int part)
 	return (pivot);
 }
 
-void	ft_push_sort(t_stack_info *stack)
+int	ft_find_min(t_list *lst, int stack_max)
 {
-	int	min_i[2];
-	int	max_i[2];
+	int	min;
+	int	return_index;
 
-	while (stack->sb_size > 1)
+	min = stack_max;
+	return_index = -1;
+	while (lst)
 	{
-		min_i[0] = ft_find_min_index_sb(stack);
-		max_i[0] = ft_find_max_index_sb(stack);
-		if (ft_smart_rotate(stack, min_i, max_i))
-			stack->n_top_sorted++;
+		if (*(*(int **) lst->content + 0) < min)
+		{
+			min = *(*(int **) lst->content + 0);
+			return_index = *(*(int **) lst->content + 1);
+		}
+		lst = lst->next;
 	}
-	pa(stack);
-	stack->n_top_sorted++;
+	return (return_index);
+}
+
+int	ft_find_max(t_list *lst, int stack_min)
+{
+	int	max;
+	int	return_index;
+
+	max = stack_min;
+	return_index = -1;
+	while (lst)
+	{
+		if (*(*(int **) lst->content + 0) > max)
+		{
+			max = *(*(int **) lst->content + 0);
+			return_index = *(*(int **) lst->content + 1);
+		}
+		lst = lst->next;
+	}
+	return (return_index);
+}
+
+int	ft_smart_rotate(t_stack_info *stack, int *index1, int *index2)
+{
+	if (index1[0] < stack->sb_size - index1[0])
+		index1[1] = index1[0];
+	else
+		index1[1] = stack->sb_size - index1[0];
+	if (index2[0] < stack->sb_size - index2[0])
+		index2[1] = index2[0];
+	else
+		index2[1] = stack->sb_size - index2[0];
+	if (index1[1] < index2[1])
+		ft_rb_rrb_pa(stack, index1[0], 1);
+	else
+	{
+		ft_rb_rrb_pa(stack, index2[0], 0);
+		return (1);
+	}
+	return (0);
 }
 
 void	ft_rb_rrb_pa(t_stack_info *stack, int index, int rotate)
@@ -65,23 +107,7 @@ void	ft_rb_rrb_pa(t_stack_info *stack, int index, int rotate)
 		while (index--)
 			rrb(stack, 1);
 	}
-	pa(stack);
+	pa(stack, 1);
 	if (rotate)
 		ra(stack, 1);
-}
-
-int	ft_find_min_index_sb(t_stack_info *stack)
-{
-	int	min;
-
-	min = ft_find_min(stack->sb_top, stack->max_int);
-	return (ft_get_index(stack->sb_top, min));
-}
-
-int	ft_find_max_index_sb(t_stack_info *stack)
-{
-	int	max;
-
-	max = ft_find_max(stack->sb_top, stack->min_int);
-	return (ft_get_index(stack->sb_top, max));
 }

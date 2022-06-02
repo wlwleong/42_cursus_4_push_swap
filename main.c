@@ -13,8 +13,8 @@
 #include "push_swap.h"
 
 static int	**init_array(int size);
-static int	check_numeric_param(char *str);
-static int	check_duplicate(int **arr, int size);
+static int	ft_isnumeric(char *str);
+static int	ft_isdup(int **arr, int size);
 static void	ft_error(int type, int **array_input, int size);
 
 int	main(int argc, char *argv[])
@@ -29,7 +29,7 @@ int	main(int argc, char *argv[])
 	i = 1;
 	while (argc - i > 0)
 	{
-		if (!check_numeric_param(argv[i]))
+		if (!ft_isnumeric(argv[i]))
 			ft_error(-1, stack.array_input, stack.sa_size);
 		else if (ft_atoi(argv[i]) < INT_MIN || ft_atoi(argv[i]) > INT_MAX)
 			ft_error(-1, stack.array_input, stack.sa_size);
@@ -37,7 +37,7 @@ int	main(int argc, char *argv[])
 			stack.array_input[i - 1][0] = ft_atoi(argv[i]);
 		i++;
 	}
-	if (!check_duplicate(stack.array_input, stack.sa_size))
+	if (!ft_isdup(stack.array_input, stack.sa_size))
 		ft_error(-1, stack.array_input, stack.sa_size);
 	push_swap(&stack);
 	return (0);
@@ -81,7 +81,7 @@ static void	ft_error(int type, int **array_input, int size)
 	exit(EXIT_FAILURE);
 }
 
-static int	check_numeric_param(char *str)
+static int	ft_isnumeric(char *str)
 {
 	int	i;
 
@@ -97,7 +97,7 @@ static int	check_numeric_param(char *str)
 	return (1);
 }
 
-static int	check_duplicate(int **arr, int size)
+static int	ft_isdup(int **arr, int size)
 {
 	int	i;
 	int	j;
