@@ -34,9 +34,11 @@ void	rra(t_stack_info *stack, int display)
 	last->next = stack->sa_top;
 	stack->sa_top = last;
 	stack->sa_last = *(int **) ft_lstlast(stack->sa_top)->content;
-	stack->n_operations++;
 	if (display)
+	{
+		stack->n_operations++;
 		ft_putstr_fd("rra\n", 1);
+	}
 }
 
 /*
@@ -61,9 +63,11 @@ void	rrb(t_stack_info *stack, int display)
 	last->next = stack->sb_top;
 	stack->sb_top = last;
 	stack->sb_last = *(int **) ft_lstlast(stack->sb_top)->content;
-	stack->n_operations++;
 	if (display)
+	{
+		stack->n_operations++;
 		ft_putstr_fd("rrb\n", 1);
+	}
 }
 
 /*

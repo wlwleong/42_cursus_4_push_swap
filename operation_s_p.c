@@ -26,9 +26,11 @@ void	sa(t_stack_info *stack, int display)
 	stack->sa_top->content = stack->sa_top->next->content;
 	stack->sa_top->next->content = temp;
 	stack->sa_last = *(int **) ft_lstlast(stack->sa_top)->content;
-	stack->n_operations++;
 	if (display)
+	{
+		stack->n_operations++;
 		ft_putstr_fd("sa\n", 1);
+	}
 }
 
 /*
@@ -45,9 +47,11 @@ void	sb(t_stack_info *stack, int display)
 	stack->sb_top->content = stack->sb_top->next->content;
 	stack->sb_top->next->content = temp;
 	stack->sb_last = *(int **) ft_lstlast(stack->sb_top)->content;
-	stack->n_operations++;
 	if (display)
+	{
+		stack->n_operations++;
 		ft_putstr_fd("sb\n", 1);
+	}
 }
 
 /*
