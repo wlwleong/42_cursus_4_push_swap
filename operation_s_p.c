@@ -26,6 +26,7 @@ void	sa(t_stack_info *stack, int display)
 	stack->sa_top->content = stack->sa_top->next->content;
 	stack->sa_top->next->content = temp;
 	stack->sa_last = *(int **) ft_lstlast(stack->sa_top)->content;
+	stack->n_operations++;
 	if (display)
 		ft_putstr_fd("sa\n", 1);
 }
@@ -44,6 +45,7 @@ void	sb(t_stack_info *stack, int display)
 	stack->sb_top->content = stack->sb_top->next->content;
 	stack->sb_top->next->content = temp;
 	stack->sb_last = *(int **) ft_lstlast(stack->sb_top)->content;
+	stack->n_operations++;
 	if (display)
 		ft_putstr_fd("sb\n", 1);
 }
@@ -51,18 +53,20 @@ void	sb(t_stack_info *stack, int display)
 /*
 sa and sb at the same time.
 */
-void	ss(t_stack_info *stack)
+void	ss(t_stack_info *stack, int display)
 {
 	sa(stack, 0);
 	sb(stack, 0);
-	ft_putstr_fd("ss\n", 1);
+	stack->n_operations++;
+	if (display)
+		ft_putstr_fd("ss\n", 1);
 }
 
 /*
 Take the first element at the top of b and put it at the top of a.
 Do nothing if b is empty.
 */
-void	pa(t_stack_info *stack)
+void	pa(t_stack_info *stack, int display)
 {
 	t_list	*list;
 	t_list	*temp;
@@ -78,14 +82,16 @@ void	pa(t_stack_info *stack)
 	stack->sa_size = ft_lstsize(stack->sa);
 	stack->sb_size = ft_lstsize(stack->sb);
 	stack->sa_last = *(int **) ft_lstlast(stack->sa_top)->content;
-	ft_putstr_fd("pa\n", 1);
+	stack->n_operations++;
+	if (display)
+		ft_putstr_fd("pa\n", 1);
 }
 
 /*
 Take the first element at the top of a and put it at the top of b.
 Do nothing if a is empty.
 */
-void	pb(t_stack_info *stack)
+void	pb(t_stack_info *stack, int display)
 {
 	t_list	*list;
 	t_list	*temp;
@@ -101,5 +107,7 @@ void	pb(t_stack_info *stack)
 	stack->sa_size = ft_lstsize(stack->sa);
 	stack->sb_size = ft_lstsize(stack->sb);
 	stack->sb_last = *(int **) ft_lstlast(stack->sb_top)->content;
-	ft_putstr_fd("pb\n", 1);
+	stack->n_operations++;
+	if (display)
+		ft_putstr_fd("pb\n", 1);
 }

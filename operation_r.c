@@ -30,6 +30,7 @@ void	ra(t_stack_info *stack, int display)
 	last->next->next = NULL;
 	stack->sa = stack->sa_top;
 	stack->sa_last = *(int **) ft_lstlast(stack->sa_top)->content;
+	stack->n_operations++;
 	if (display)
 		ft_putstr_fd("ra\n", 1);
 }
@@ -52,6 +53,7 @@ void	rb(t_stack_info *stack, int display)
 	last->next->next = NULL;
 	stack->sb = stack->sb_top;
 	stack->sb_last = *(int **) ft_lstlast(stack->sb_top)->content;
+	stack->n_operations++;
 	if (display)
 		ft_putstr_fd("rb\n", 1);
 }
@@ -59,9 +61,11 @@ void	rb(t_stack_info *stack, int display)
 /*
 ra and rb at the same time.
 */
-void	rr(t_stack_info *stack)
+void	rr(t_stack_info *stack, int display)
 {
 	ra(stack, 0);
 	rb(stack, 0);
-	ft_putstr_fd("rr\n", 1);
+	stack->n_operations++;
+	if (display)
+		ft_putstr_fd("rr\n", 1);
 }
