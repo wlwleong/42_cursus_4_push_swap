@@ -70,7 +70,7 @@ static void	ft_error(int type, int **array_input, int size)
 
 	if (type == -1)
 	{
-		write(1, "Error\n", 6);
+		write(2, "Error\n", 6);
 		i = 0;
 		while (i < size)
 			free(array_input[i++]);
