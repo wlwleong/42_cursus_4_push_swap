@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/checker_bonus.h"
 
 void	free_stack_array(t_stack_info *stack)
 {

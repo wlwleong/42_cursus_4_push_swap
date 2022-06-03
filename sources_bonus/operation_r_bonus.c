@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/checker_bonus.h"
 
 /*
 Shift up all elements of stack a by 1.
