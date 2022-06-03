@@ -22,7 +22,9 @@ int	main(int argc, char *argv[])
 	t_stack_info	stack;
 	int				i;
 
-	if (argc < 3)
+	if (argc < 2)
+		ft_error(1, NULL, 0);
+	else if (argc < 3 && !ft_isnumeric(argv[1]))
 		ft_error(0, NULL, 0);
 	stack.sa_size = argc - 1;
 	stack.array_input = init_array(stack.sa_size);
@@ -68,7 +70,9 @@ static void	ft_error(int type, int **array_input, int size)
 {
 	int	i;
 
-	if (type == -1)
+	if (type == 0)
+		write(2, "Error\n", 6);
+	else if (type == -1)
 	{
 		write(2, "Error\n", 6);
 		i = 0;
@@ -87,7 +91,11 @@ static int	ft_isnumeric(char *str)
 
 	i = 0;
 	if (str[i] == '+' || str[i] == '-')
+	{
+		if (!str[i + 1])
+			return (0);
 		i++;
+	}
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
