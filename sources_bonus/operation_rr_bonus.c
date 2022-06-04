@@ -33,7 +33,6 @@ void	rra(t_stack_info *stack, int display)
 	second_last->next = NULL;
 	last->next = stack->sa_top;
 	stack->sa_top = last;
-	stack->sa_last = *(int **) ft_lstlast(stack->sa_top)->content;
 	if (display)
 	{
 		stack->n_operations++;
@@ -62,7 +61,6 @@ void	rrb(t_stack_info *stack, int display)
 	second_last->next = NULL;
 	last->next = stack->sb_top;
 	stack->sb_top = last;
-	stack->sb_last = *(int **) ft_lstlast(stack->sb_top)->content;
 	if (display)
 	{
 		stack->n_operations++;

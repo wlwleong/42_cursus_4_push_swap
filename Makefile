@@ -57,8 +57,7 @@ $(NAME):			$(LIBFT) $(OBJ_DIR) $(OBJECTS) $(HEADER)
 					@echo "\033[32mPush_swap Compiled! ᕦ(\033[31m♥\033[32m_\033[31m♥\033[32m)ᕤ\n"
 
 $(BONUS_NAME):		$(LIBFT) $(OBJ_DIR) $(BONUS_OBJECTS) $(BONUS_HEADER)
-					@$(CC) $(CFLAGS) $(BONUS_OBJECTS) $(LIBFT) -o $(NAME)
-					@cp $(NAME) $(BONUS_NAME)
+					@$(CC) $(CFLAGS) $(BONUS_OBJECTS) $(LIBFT) -o $(BONUS_NAME)
 					@echo "\033[32mPush_swap Bonus Compiled! ᕦ(\033[31m♥\033[32m_\033[31m♥\033[32m)ᕤ\n"
 
 $(LIBFT):

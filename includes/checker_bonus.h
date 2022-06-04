@@ -17,30 +17,26 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <limits.h>
-# define BUFFER_SIZE 100000
+# define BUFFER_SIZE 4
 
 typedef struct s_stack_info
 {
 	int		*array_input;
-	int		size;
 	int		sa_size;
 	t_list	*sa_top;
 	t_list	*sa;
-	int		*sa_last;
 	int		sb_size;
 	t_list	*sb_top;
 	t_list	*sb;
-	int		*sb_last;
+	t_list	*op_lst_top;
+	t_list	*op_lst;
 	int		n_operations;
 }				t_stack_info;
 
 typedef struct s_gnl
 {
-	char	read_string[BUFFER_SIZE];
-	ssize_t	n_read;
-	size_t	read_i;
-	size_t	start;
-	int		new_line;
+	char	input[BUFFER_SIZE];
+	int		n_read;
 }				t_gnl;
 
 /*
@@ -51,13 +47,10 @@ void	checker(t_stack_info *stack);
 /*
 checker_utils_bonus.c
 */
+void	ft_error(int type, t_stack_info *stack);
 void	free_stack_array(t_stack_info *stack);
-
-
-/*
-gnl_bonus.c
-*/
-char	*get_next_line(int fd);
+void	ft_print_arr(int *array, int size);
+void	ft_print_lst(t_list *lst);
 
 /*
 operation_s_p.c

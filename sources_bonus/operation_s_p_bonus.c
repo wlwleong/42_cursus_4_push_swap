@@ -25,7 +25,6 @@ void	sa(t_stack_info *stack, int display)
 	temp = stack->sa_top->content;
 	stack->sa_top->content = stack->sa_top->next->content;
 	stack->sa_top->next->content = temp;
-	stack->sa_last = *(int **) ft_lstlast(stack->sa_top)->content;
 	if (display)
 	{
 		stack->n_operations++;
@@ -46,7 +45,6 @@ void	sb(t_stack_info *stack, int display)
 	temp = stack->sb_top->content;
 	stack->sb_top->content = stack->sb_top->next->content;
 	stack->sb_top->next->content = temp;
-	stack->sb_last = *(int **) ft_lstlast(stack->sb_top)->content;
 	if (display)
 	{
 		stack->n_operations++;
@@ -85,7 +83,6 @@ void	pa(t_stack_info *stack, int display)
 	stack->sb_top = stack->sb;
 	stack->sa_size = ft_lstsize(stack->sa);
 	stack->sb_size = ft_lstsize(stack->sb);
-	stack->sa_last = *(int **) ft_lstlast(stack->sa_top)->content;
 	stack->n_operations++;
 	if (display)
 		ft_putstr_fd("pa\n", 1);
@@ -110,7 +107,6 @@ void	pb(t_stack_info *stack, int display)
 	stack->sa_top = stack->sa;
 	stack->sa_size = ft_lstsize(stack->sa);
 	stack->sb_size = ft_lstsize(stack->sb);
-	stack->sb_last = *(int **) ft_lstlast(stack->sb_top)->content;
 	stack->n_operations++;
 	if (display)
 		ft_putstr_fd("pb\n", 1);

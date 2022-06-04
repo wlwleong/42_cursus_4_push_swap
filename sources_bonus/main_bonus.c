@@ -11,12 +11,10 @@
 /* ************************************************************************** */
 
 #include "../includes/checker_bonus.h"
-#include <stdio.h>
 
 static int	*init_array(int size);
 static int	ft_isnumeric(char *str);
 static int	ft_isdup(int *arr, int size);
-static void	ft_error(int type, int *array_input);
 
 int	main(int argc, char *argv[])
 {
@@ -33,15 +31,15 @@ int	main(int argc, char *argv[])
 	while (argc - i > 0)
 	{
 		if (!ft_isnumeric(argv[i]))
-			ft_error(-1, stack.array_input);
+			ft_error(-1, &stack);
 		else if (ft_atoi(argv[i]) < INT_MIN || ft_atoi(argv[i]) > INT_MAX)
-			ft_error(-1, stack.array_input);
+			ft_error(-1, &stack);
 		else
 			stack.array_input[i - 1] = ft_atoi(argv[i]);
 		i++;
 	}
 	if (!ft_isdup(stack.array_input, stack.sa_size))
-		ft_error(-1, stack.array_input);
+		ft_error(-1, &stack);
 	checker(&stack);
 	return (0);
 }
@@ -53,7 +51,7 @@ static int	*init_array(int size)
 
 	array = malloc (sizeof(int *) * size);
 	if (!array)
-		ft_error(-2, NULL);
+		ft_error(-3, NULL);
 	i = 0;
 	while (i < size)
 	{
@@ -61,20 +59,6 @@ static int	*init_array(int size)
 		i++;
 	}
 	return (array);
-}
-
-static void	ft_error(int type, int *array_input)
-{
-	if (type == 0)
-		write(2, "Error\n", 6);
-	else if (type == -1)
-	{
-		write(2, "Error\n", 6);
-		free(array_input);
-	}
-	else if (type == -2)
-		ft_putstr_fd("malloc Error\n", 1);
-	exit(EXIT_FAILURE);
 }
 
 static int	ft_isnumeric(char *str)

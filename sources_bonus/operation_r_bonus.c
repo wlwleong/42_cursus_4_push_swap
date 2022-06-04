@@ -29,7 +29,6 @@ void	ra(t_stack_info *stack, int display)
 	last->next = temp;
 	last->next->next = NULL;
 	stack->sa = stack->sa_top;
-	stack->sa_last = *(int **) ft_lstlast(stack->sa_top)->content;
 	if (display)
 	{
 		stack->n_operations++;
@@ -54,7 +53,6 @@ void	rb(t_stack_info *stack, int display)
 	last->next = temp;
 	last->next->next = NULL;
 	stack->sb = stack->sb_top;
-	stack->sb_last = *(int **) ft_lstlast(stack->sb_top)->content;
 	if (display)
 	{
 		stack->n_operations++;
