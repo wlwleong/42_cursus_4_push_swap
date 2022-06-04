@@ -18,7 +18,7 @@ SOURCES_FILES	+=	operation_r.c operation_rr.c sort_small.c sort_utils_1.c
 SOURCES_FILES	+=	sort_medium.c sort_medium_utils.c sort_utils_2.c
 SOURCES_FILES	+=	sort_big.c sort_big_utils.c
 
-BONUS_FILES		=	main_bonus.c
+BONUS_FILES		=	main_bonus.c checker_bonus.c checker_utils_bonus.c
 BONUS_FILES		+=	operation_s_p_bonus.c operation_r_bonus.c
 BONUS_FILES		+=	operation_rr_bonus.c
 

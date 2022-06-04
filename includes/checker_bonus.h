@@ -21,11 +21,8 @@
 
 typedef struct s_stack_info
 {
-	int		**array_input;
-	int		*array_sorted;
+	int		*array_input;
 	int		size;
-	int		min_int;
-	int		max_int;
 	int		sa_size;
 	t_list	*sa_top;
 	t_list	*sa;
@@ -34,7 +31,6 @@ typedef struct s_stack_info
 	t_list	*sb_top;
 	t_list	*sb;
 	int		*sb_last;
-	int		n_top_sorted;
 	int		n_operations;
 }				t_stack_info;
 
@@ -51,6 +47,12 @@ typedef struct s_gnl
 checker_bonus.c
 */
 void	checker(t_stack_info *stack);
+
+/*
+checker_utils_bonus.c
+*/
+void	free_stack_array(t_stack_info *stack);
+
 
 /*
 gnl_bonus.c
