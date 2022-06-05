@@ -23,9 +23,11 @@ typedef struct s_list
 }				t_list;
 
 int		ft_isdigit(int c);
+void	*ft_memmove(void *dest, const void *src, size_t count);
 long	ft_atoi(const char *str);
 int		ft_strncmp(const char *str1, const char *str2, size_t count);
 char	*ft_strdup(const char *string);
+char	*ft_strjoin(char const *s1, char const *s2);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
