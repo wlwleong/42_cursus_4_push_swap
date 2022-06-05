@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/checker_bonus.h"
-#include <stdio.h>
 
 static void	init_stack(t_stack_info *stack);
 static int	ft_check_op(char *str);
