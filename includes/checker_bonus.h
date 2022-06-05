@@ -17,7 +17,9 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <limits.h>
-# define BUFFER_SIZE 4
+# define BUFFER_SIZE 42
+# define DISPLAY_OFF 0
+# define DISPLAY_ON 1
 
 typedef struct s_stack_info
 {
@@ -35,8 +37,11 @@ typedef struct s_stack_info
 
 typedef struct s_gnl
 {
-	char	input[BUFFER_SIZE];
-	int		n_read;
+	char	read[BUFFER_SIZE];
+	ssize_t	n_read;
+	size_t	read_i;
+	size_t	start_i;
+	int		new_line;
 }				t_gnl;
 
 /*
@@ -51,6 +56,11 @@ void	ft_error(int type, t_stack_info *stack);
 void	free_stack_array(t_stack_info *stack);
 void	ft_print_arr(int *array, int size);
 void	ft_print_lst(t_list *lst);
+
+/*
+get_next_line_bonus.c
+*/
+char	*get_next_line(int fd);
 
 /*
 operation_s_p.c
