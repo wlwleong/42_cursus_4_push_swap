@@ -65,12 +65,12 @@ static void	init_stack(t_stack_info *stack)
 
 static int	ft_check_op(char *str)
 {
-	if (ft_strncmp(str, "sa", 2) != 0 && ft_strncmp(str, "sb", 2) != 0
-		&& ft_strncmp(str, "ss", 2) != 0
-		&& ft_strncmp(str, "pa", 2) != 0 && ft_strncmp(str, "pb", 2) != 0
-		&& ft_strncmp(str, "ra", 2) != 0 && ft_strncmp(str, "rb", 2) != 0
-		&& ft_strncmp(str, "rra", 3) != 0 && ft_strncmp(str, "rrb", 3) != 0
-		&& ft_strncmp(str, "rrr", 3) != 0 && ft_strncmp(str, "rr", 2) != 0)
+	if (ft_strncmp(str, "sa\n", 3) != 0 && ft_strncmp(str, "sb\n", 3) != 0
+		&& ft_strncmp(str, "ss\n", 3) != 0
+		&& ft_strncmp(str, "pa\n", 3) != 0 && ft_strncmp(str, "pb\n", 3) != 0
+		&& ft_strncmp(str, "ra\n", 3) != 0 && ft_strncmp(str, "rb\n", 3) != 0
+		&& ft_strncmp(str, "rra\n", 4) != 0 && ft_strncmp(str, "rrb\n", 4) != 0
+		&& ft_strncmp(str, "rrr\n", 4) != 0 && ft_strncmp(str, "rr\n", 3) != 0)
 		return (0);
 	return (1);
 }
